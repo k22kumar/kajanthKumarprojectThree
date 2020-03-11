@@ -13,6 +13,8 @@ slyGameApp.init = function () {
     slyGameApp
 }
 
+//randomNumberG
+
 //document ready
 $(document).ready(function () {
     recipeApp.init();

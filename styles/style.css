@@ -459,10 +459,14 @@ header {
 }
 
 /*general styles*/
-.speechContainer, .scenarioContainer, .characterContainer {
+.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight, .value {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.toUpper {
+  text-transform: uppercase;
 }
 
 /*speech area styles*/
@@ -495,6 +499,12 @@ header {
   width: 50%;
 }
 
+.scenarioContainer .bagContainer .bag {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .scenarioContainer .characterContainer, .scenarioContainer .bagContainer {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -502,4 +512,60 @@ header {
           flex-direction: column;
 }
 
+.character, .bag {
+  width: 100%;
+  height: 80%;
+}
+
+.character img {
+  height: 100%;
+}
+
+.bag img {
+  height: 60%;
+}
+
 /* item area styles */
+.itemContainer {
+  height: 40vh;
+}
+
+.itemContainer .item {
+  margin: 10px;
+  padding: 25px 25px;
+  background-color: darkgrey;
+  color: darkslategray;
+  position: relative;
+  border-radius: 4px;
+}
+
+.itemContainer .item .weight, .itemContainer .item .value {
+  width: 20px;
+  height: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: -10px;
+}
+
+.itemContainer .item .weight {
+  background-color: black;
+  color: white;
+  position: absolute;
+  left: -10px;
+}
+
+.itemContainer .item .value {
+  background-color: yellow;
+  color: black;
+  position: absolute;
+  right: -10px;
+  border-radius: 50%;
+}
+
+.weight p, .value p {
+  text-align: center;
+}
