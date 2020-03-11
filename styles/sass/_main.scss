@@ -1,0 +1,44 @@
+/*general styles*/
+.speechContainer, .scenarioContainer, .characterContainer {
+    display: flex;
+}
+
+
+/*speech area styles*/
+.speechContainer {
+    width: 100%;
+    height: 20vh;
+    p {
+        width: calc(75% - 15px);
+        font-size: 1.4rem;
+    }
+    .heroIcon {
+        margin-left: 15px;
+        width: 25%;
+    }
+}
+
+/* scenarario styles */
+.scenarioContainer {
+    height: 40vh;
+    width: 100%;
+    .characterContainer {
+        width: 50%;
+
+    }
+    .bagContainer {
+        width: 50%;
+    }
+
+    .characterContainer, .bagContainer {
+        flex-direction: column;
+    }
+
+}
+
+.character img , .bag img{
+    
+}
+
+/* item area styles */
+
