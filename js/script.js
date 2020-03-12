@@ -13,7 +13,7 @@ itemsArray: [
 ],
 
 //The carrying capacity of the character (can only carry 5 KG)
-carryCapacity: 5,
+maxCapacity: 5,
 currentCapacity: 0,
 currentValue: 0,
 answerArray: [],
@@ -50,19 +50,25 @@ slyGameApp.knapsackAlgorithm = (array) => {
     array.sort(slyGameApp.itemsCompareWeight); //sort array based on weight
     console.log(array);
 
-    const dpMatrix = []
-    for (let col =0; col<slyGameApp.carryCapacity; col++) {
-        dpMatrix[col][0] = 0;
-        for(let row =0; row<slyGameApp.array.length; row++) {
-            dpMatrix[0][row] = 0;
+    //initialize memoization array X AXIS IS CARRYING CAPACITY, Y AXIS IS ITEM TO KEEP OR NOT 
+    const dpMatrix =  slyGameApp.createMatrix(array.length+1, slyGameApp.maxCapacity+1);
+    
+    for (row=1;row<;row++){
+        for (cols = 1; cols < dpMatrix.length; cols++){
+            
         }
     }
+
+    // console.log("cols": dpMatrix[0].length);
+    // console.log("rows": dpMatrix.length);
+    
     console.log(dpMatrix);
 }
 
 //Utility function that helps sort an item array based on its weight
 slyGameApp.itemsCompareWeight = (item1, item2) => {
         // Use toUpperCase() to ignore character casing
+
         const weight1 = item1.weight;
         const weight2 = item2.weight;
         let comparison = 0;
@@ -73,6 +79,22 @@ slyGameApp.itemsCompareWeight = (item1, item2) => {
             comparison = -1;
         }
         return comparison;
+}
+
+//This is a utility function that creates a N by M matrix and initializes it with all 0's
+//DISCLAIMER I COPIED THIS CODE WITH SOME SMALL EDITS FROM THIS STACK OVERFLOW QUESTION
+//https://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript
+//I had alot of trouble tring to figure out how to create a 2d matrix DYNAMICALLY using what we learned in class
+slyGameApp.createMatrix = (rows, cols) => {
+    let matrix = [];
+    for (var i = 0; i < rows; i++) {
+        matrix.push([]);
+        matrix[i].push(new Array(cols));
+        for (var j = 0; j < cols; j++) {
+            matrix[i][j] = 0;
+        }
+    }
+    return matrix;
 }
 
 //document ready
