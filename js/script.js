@@ -45,16 +45,30 @@ slyGameApp.rng = (min = 0,max) => {
 
 
 //Test knapsack algorithm that receives an array of items to 
-slyGameApp.knapsackAlgorithm = (array) => {
-    console.log(array);
-    array.sort(slyGameApp.itemsCompareWeight); //sort array based on weight
-    console.log(array);
+slyGameApp.knapsackAlgorithm = (itemArray) => {
+    console.log(itemArray);
+    itemArray.sort(slyGameApp.itemsCompareWeight); //sort array based on weight
+    console.log(itemArray);
 
     //initialize memoization array X AXIS IS CARRYING CAPACITY, Y AXIS IS ITEM TO KEEP OR NOT 
-    const dpMatrix =  slyGameApp.createMatrix(array.length+1, slyGameApp.maxCapacity+1);
+    const rows = itemArray.length + 1;
+    const cols = slyGameApp.maxCapacity + 1;
+    const dpMatrix =  slyGameApp.createMatrix(rows, cols);
+    let remainingCapacity = slyGameApp.maxCapacity;
+    let currentValue = 0;
+    let maxValue = 0;
     
-    for (row=1;row<;row++){
-        for (cols = 1; cols < dpMatrix.length; cols++){
+
+    for (let i = 1; i < rows; i++){
+        console.log("row: "+i);
+        for (let j = 1; j < cols; j++){
+            console.log("col "+j);
+            console.log(itemArray[j-1]);
+            if(itemArray[j-1].weight<remainingCapacity){
+                dpMatrix[i][j] = itemArray[j-1].value;
+            } else {
+                dpMatrix[i][j] = dpMatrix[i-1][j];
+            }
             
         }
     }
@@ -81,7 +95,7 @@ slyGameApp.itemsCompareWeight = (item1, item2) => {
         return comparison;
 }
 
-//This is a utility function that creates a N by M matrix and initializes it with all 0's
+//This is a utility function that creates a N by M matrix and initializes it with all 0's in the first row & column
 //DISCLAIMER I COPIED THIS CODE WITH SOME SMALL EDITS FROM THIS STACK OVERFLOW QUESTION
 //https://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript
 //I had alot of trouble tring to figure out how to create a 2d matrix DYNAMICALLY using what we learned in class
@@ -91,7 +105,8 @@ slyGameApp.createMatrix = (rows, cols) => {
         matrix.push([]);
         matrix[i].push(new Array(cols));
         for (var j = 0; j < cols; j++) {
-            matrix[i][j] = 0;
+            matrix[i][0] = 0;
+            matrix[0][j] = 0;
         }
     }
     return matrix;
