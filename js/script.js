@@ -5,11 +5,11 @@ const slyGameApp = {
 
 //itemsArray: this is an array used to store the items that have a WEIGHT, and a VALUE
 itemsArray: [
-        { weight: 2, value: 3},
-        { weight: 5, value: 6 },
-        { weight: 1, value: 2 },
-        { weight: 4, value: 5 },
-        { weight: 3, value: 1 }
+        { weight: 2, value: 2},
+        { weight: 5, value: 5 },
+        { weight: 1, value: 1 },
+        { weight: 4, value: 4 },
+        { weight: 3, value: 3 }
 ],
 
 //The carrying capacity of the character (can only carry 5 KG)
@@ -66,7 +66,7 @@ slyGameApp.knapsackAlgorithm = (itemArray) => {
         for (let j = 1; j < cols; j++){
             //set the initial value of withOutItem to the previously calculated value;
             withOutItemValue = dpMatrix[i-1][j]; 
-            console.log("withoutItem value: " + withOutItemValue);
+            console.log("START Forloop, withoutItem value: " + withOutItemValue);
             withItemValue = 0;
             // console.log("col "+j);
             // console.log(itemArray[j-1]);
@@ -83,26 +83,37 @@ slyGameApp.knapsackAlgorithm = (itemArray) => {
                 console.log("i= " + i + " j= " + j);
                 console.log(`currentCapacity subtract item is: ${currentCapacity}`);
                 
-                if(currentCapacity > 0) {
-                    console.log("row: " + currentCapacity + " col: " + j);
+                if(j >= currentCapacity) {
                     console.log(
-                      "dpMatrix @ curreCapacity, j = " +
+                      "dpmatrix @ currCap: " +
+                        currentCapacity +
+                        " , j: " +
+                        j +
+                        " = " +
                         dpMatrix[currentCapacity][j]
                     );
-                    withItemValue += dpMatrix[currentCapacity][j];
-                    
-                    //if withItemValue is greater than without, than update the dpMatrix
-                } else {
-                    console.log("withItem: " + withItemValue + " withOutItem: "+ withOutItemValue);
-                    withItemValue > withOutItemValue
-                      ? dpMatrix[i][j] = withItemValue
-                      : dpMatrix[i][j] = withOutItemValue;
-                }
-                //if there is no space remaining, then check values of item added vs without
-
+                        while(!(currentCapacity<i)) {
+                            currentCapacity--;
+                        }
+                        console.log(
+                          "AFTER WHILE dpmatrix @ currCap: " +
+                            currentCapacity +
+                            " , j: " +
+                            j +
+                            " = " +
+                            dpMatrix[currentCapacity][j]
+                        );
+                        withItemValue += dpMatrix[currentCapacity][j];
+                };
+                console.log("checking witItem: " + withItemValue + " against Without :" + withOutItemValue);
+                withItemValue > withOutItemValue ?
+                dpMatrix[i][j] = withItemValue :
+                dpMatrix[i][j] = withOutItemValue;
+                console.log("decided from withOutVsWith: " + dpMatrix[i][j]);
                 
             } else {//if it cant fit in the bag, the max value we can get is the answer one row before
                 dpMatrix[i][j] = dpMatrix[i-1][j];
+                console.log("decided item cant fit so: " + dpMatrix[i][j]);
             }
             
         }
