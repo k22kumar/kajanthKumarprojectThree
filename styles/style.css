@@ -459,10 +459,16 @@ header {
 }
 
 /*general styles*/
-.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight, .value {
+.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight, .value, .itemContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.itemContainer, .speechContainer {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .toUpper {
@@ -527,7 +533,8 @@ header {
 
 /* item area styles */
 .itemContainer {
-  height: 40vh;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .itemContainer .item {

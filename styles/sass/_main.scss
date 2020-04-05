@@ -1,6 +1,10 @@
 /*general styles*/
-.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight,.value {
+.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight,.value, .itemContainer {
     display: flex;
+}
+
+.itemContainer, .speechContainer {
+    justify-content: center;
 }
 
 .toUpper {
@@ -59,7 +63,7 @@
 
 /* item area styles */
 .itemContainer {
-    height: 40vh;
+    flex-wrap: wrap;
 
     .item {
         margin: 10px;
