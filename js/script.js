@@ -5,11 +5,11 @@ const slyGameApp = {
 
 //itemsArray: this is an array used to store the items that have a WEIGHT, and a VALUE
 itemsArray: [
-        { weight: 2, value: 2},
-        { weight: 5, value: 5 },
-        { weight: 1, value: 1 },
-        { weight: 4, value: 4 },
-        { weight: 3, value: 3 }
+        { weight: 2, value: 3},
+        { weight: 5, value: 6 },
+        { weight: 1, value: 2 },
+        { weight: 4, value: 5 },
+        { weight: 3, value: 4 }
 ],
 
 //The carrying capacity of the character (can only carry 5 KG)
@@ -57,69 +57,26 @@ slyGameApp.knapsackAlgorithm = (itemArray) => {
     let withItemValue = 0;
     let withOutItemValue = 0;
     let currentCapacity = 0;
-    
 
     
     for (let i = 1; i < rows; i++){
-        // console.log("row: "+i);
+        //loop through each row represeting the sorted item
         
-        for (let j = 1; j < cols; j++){
-            //set the initial value of withOutItem to the previously calculated value;
-            withOutItemValue = dpMatrix[i-1][j]; 
-            console.log("START Forloop, withoutItem value: " + withOutItemValue);
-            withItemValue = 0;
-            // console.log("col "+j);
-            // console.log(itemArray[j-1]);
-            currentCapacity = j;
-            //if it can fit in the bag, check the max value of it fiting in the bag vs without it
-            if(itemArray[i-1].weight<=currentCapacity){
-                
-                // console.log("col " + j);
-                // console.log("item value: " + itemArray[i-1].value);
-                withItemValue = itemArray[i-1].value; //check max value if we add to bag
-                
-                //if there is any remaining space, the max value is the value of item added plus the max value of weight remaining
-                currentCapacity = j - itemArray[i-1].weight;
-                console.log("i= " + i + " j= " + j);
-                console.log(`currentCapacity subtract item is: ${currentCapacity}`);
-                
-                if(j >= currentCapacity) {
-                    console.log(
-                      "dpmatrix @ currCap: " +
-                        currentCapacity +
-                        " , j: " +
-                        j +
-                        " = " +
-                        dpMatrix[currentCapacity][j]
-                    );
-                        while(!(currentCapacity<i)) {
-                            currentCapacity--;
-                        }
-                        console.log(
-                          "AFTER WHILE dpmatrix @ currCap: " +
-                            currentCapacity +
-                            " , j: " +
-                            j +
-                            " = " +
-                            dpMatrix[currentCapacity][j]
-                        );
-                        withItemValue += dpMatrix[currentCapacity][j];
-                };
-                console.log("checking witItem: " + withItemValue + " against Without :" + withOutItemValue);
-                withItemValue > withOutItemValue ?
-                dpMatrix[i][j] = withItemValue :
-                dpMatrix[i][j] = withOutItemValue;
-                console.log("decided from withOutVsWith: " + dpMatrix[i][j]);
-                
-            } else {//if it cant fit in the bag, the max value we can get is the answer one row before
-                dpMatrix[i][j] = dpMatrix[i-1][j];
-                console.log("decided item cant fit so: " + dpMatrix[i][j]);
+        for (let capacity = 1; capacity < cols; capacity++){
+            //loop through each column representing the increasing bag size
+            //if we CANNOT fit the item, than max possible value is using previous items ie one row before same column. 
+            if(itemArray[i-1].weight > capacity ) {
+                dpMatrix[i][capacity] = dpMatrix[i-1][capacity];
+            } else {
+                //check the values for if we take item vs if we dont take item
+                withOutItemValue = dpMatrix[i-1][capacity];
+                withItemValue = itemArray[i-1].value + dpMatrix[i-1][capacity-itemArray[i-1].weight];
+                //assign the higher value to the matrix
+                dpMatrix[i][capacity] = Math.max(withItemValue, withOutItemValue);
             }
-            
+            // END OF FOR LOOP
         }
-        slyGameApp.print2dArray(dpMatrix);
     }   
-    slyGameApp.print2dArray(dpMatrix);
 }
 
 //debug function to print array to conosle 
