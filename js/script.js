@@ -18,9 +18,9 @@ const gemGameApp = {
   currentValue: 0,
   maxValue:0,
   difficulty:1,
-  numberOfGems: 2,
-  weightDifficulty: 2,
-  valueDifficulty: 1,
+  numberOfGems: 6,
+  weightDifficulty: 4,
+  valueDifficulty: 10,
 
   //JQuery shorthands
 
@@ -36,6 +36,7 @@ gemGameApp.init = function () {
     gemGameApp.createGems();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.gemChoice();
+    gemGameApp.checkAnswer();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -183,6 +184,16 @@ gemGameApp.gemChoice = function() {
     });
 }
 
+//This function will check the answer of users 
+gemGameApp.checkAnswer = function() {
+    $('.submit').on('click', function() {
+        const $chosenGems = $('.gemButton.chosenGem');
+        console.log($chosenGems);
+        $chosenGems.each(function (gembutton) {
+          console.log(gembutton);
+        });
+    })
+}
 
 //document ready
 $(document).ready(function () {
