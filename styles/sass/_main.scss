@@ -1,102 +1,96 @@
-/*general styles*/
-.speechContainer, .scenarioContainer, .characterContainer, .bag, .weight,.value, .itemContainer {
+/* main styles start*/
+
+/* flex styles*/
+
+.gameContainer, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
     display: flex;
 }
 
-.itemContainer, .speechContainer {
+.hide {
+    display: none;
+}
+
+.gameContainer, .gemGallery, .gem, .value, .weight, .gemButton{
     justify-content: center;
 }
-
-.toUpper {
-    text-transform: uppercase;
+main {
+    height: 100vh;
 }
 
-
-/*speech area styles*/
-.speechContainer {
+.playerInfo {
     width: 100%;
-    height: 20vh;
-    p {
-        width: calc(75% - 15px);
-        font-size: 1.4rem;
-    }
-    .heroIcon {
-        margin-left: 15px;
-        width: 25%;
-    }
+    justify-content: space-evenly;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1.3rem;
 }
 
-/* scenarario styles */
-.scenarioContainer {
-    height: 40vh;
+.playArea {
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+}
+.gameContainer {
     width: 100%;
-    .characterContainer {
-        width: 50%;
-
-    }
-    .bagContainer {
-        width: 50%;
-
-        .bag {
-            align-items: center;
-        }
-    }
-
-    .characterContainer, .bagContainer {
-        flex-direction: column;
-    }
-
-}
-
-.character, .bag{
-    width: 100%;
-    height: 80%;
-}
-
-.character img {
     height: 100%;
 }
 
-.bag img {
-    height: 60%;
+.gemGallery {
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-/* item area styles */
-.itemContainer {
-    flex-wrap: wrap;
+.gemButton {
+    padding: 0;
+    flex-direction: column;
+    font-size: 1.3rem;
+    color: blue;
+    margin: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    border: 0;
+    
+    .value, .weight, .gem {
+        align-items: center;
+    }
 
-    .item {
-        margin: 10px;
-        padding: 25px 25px;
-        background-color: darkgrey;
-        color: darkslategray;
-        position: relative;
-        border-radius: 4px;
+    .value, .weight {
+        text-align: center;
+        padding: 5px;
+        color: black;
+        width: calc(50%);
+    }
 
-        .weight, .value {
-            width: 20px;
-            height: 20px;
-            justify-content: center;
-            align-items: center;
-            bottom: -10px;
-        }
-        .weight {
-            background-color: black;
-            color: white;
-            position: absolute;
-            left: -10px;
-        }
-        .value {
-            background-color: yellow;
-            color: black;
-            position: absolute;
-            right: -10px;
-            
-            border-radius: 50%;
+    .gem{
+        padding: 5px 0;
+        font-size: 3.3rem;
+    }
+    .value {
+        background-color: yellow;
+        
+
+    }
+
+    .weight {
+        background-color: #3d3d3d;
+        color: white;
+        
+        p {
+
         }
     }
 }
 
-.weight p, .value p {
-    text-align: center;
+.submit {
+    width: 70%;
+    padding: 15px;
 }
+
+
+
+
+/* main styles end*/

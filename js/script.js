@@ -17,6 +17,7 @@ maxCapacity: 5,
 currentCapacity: 0,
 currentValue: 0,
 answerArray: [],
+numberOfItems: 3,
 
 //JQuery shorthands
 
@@ -30,6 +31,7 @@ answerArray: [],
 //slyGameApp methods
 slyGameApp.init = function () {
     slyGameApp.knapsackAlgorithm(slyGameApp.itemsArray);
+    slyGameApp.createGems();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -40,6 +42,10 @@ slyGameApp.rng = (min=0,max) => {
     return min > 0 
                 ? Math.floor((Math.random() * (max - min + 1)) + min)  //if true rng between selection
                 : Math.floor(Math.random() * max); //if false number between 0 inclusive to num2 exclusive
+}
+
+slyGameApp.createItems = () => {
+
 }
 
 
@@ -125,6 +131,35 @@ slyGameApp.createMatrix = (rows, cols) => {
     }
     return matrix;
 }
+
+//this function will dynamically insert recipes into the html
+slyGameApp.createGems = function () {
+    $(".gemGallery").empty(); //clear out any gems already in gallery
+    let i=0;
+    // go through the items array, and create each 
+    slyGameApp.itemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
+        
+        const htmlToAppend = `
+        <button id="gem${i}" class="gemButton hide">
+                        <div class="gem">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <ul class="gemInfo">
+                            <li class="weight">
+                                <p>${gemObj.weight}KG</p>
+                            </li>
+                            <li class="value">
+                                <p>$${gemObj.weight}</p>
+                            </li>
+                        </ul>
+                    </button>`;
+        $(".gemGallery").append(htmlToAppend);
+        i++;
+    })
+
+    $('.gemButton').toggleClass('hide');
+}
+
 
 //document ready
 $(document).ready(function () {
