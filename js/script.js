@@ -1,37 +1,39 @@
 const slyGameApp = {
-//This is a game that highlights the programming problem known as the "knapsack problem". The user is tasked with selecting items from a set such that the total weight does not exceed a certain weight while attempting to maximize the total value from their selection.
+  //This is a game that highlights the programming problem known as the "knapsack problem". The user is tasked with selecting items from a set such that the total weight does not exceed a certain weight while attempting to maximize the total value from their selection.
 
-//variables
+  //variables
 
-//itemsArray: this is an array used to store the items that have a WEIGHT, and a VALUE
-itemsArray: [
-        { weight: 2, value: 3},
-        { weight: 5, value: 6 },
-        { weight: 1, value: 2 },
-        { weight: 4, value: 5 },
-        { weight: 3, value: 4 }
-],
+  //itemsArray: this is an array used to store the items that have a WEIGHT, and a VALUE
+  itemsArray: [
+    { weight: 2, value: 10 },
+    { weight: 5, value: 10 },
+    { weight: 1, value: 20 },
+    { weight: 4, value: 30 },
+    { weight: 3, value: 40 },
+  ],
 
-//The carrying capacity of the character (can only carry 5 KG)
-maxCapacity: 5,
-currentCapacity: 0,
-currentValue: 0,
-answerArray: [],
-numberOfItems: 3,
+  //The carrying capacity of the character (can only carry 5 KG)
+  maxCapacity: 5,
+  currentCapacity: 0,
+  currentValue: 0,
+  maxValue:0,
+  numberOfItems: 2,
+  weightDifficulty: 2,
+  valueDifficulty: 1,
 
-//JQuery shorthands
+  //JQuery shorthands
 
-//item is the specific item to be stolen
- $item: $('item'),
- $submit: $('submit')
-
-
+  //item is the specific item to be stolen
+  $item: $("item"),
+  $submit: $("submit"),
 };
 
 //slyGameApp methods
 slyGameApp.init = function () {
-    slyGameApp.knapsackAlgorithm(slyGameApp.itemsArray);
+
     slyGameApp.createGems();
+    slyGameApp.knapsackAlgorithm(slyGameApp.itemsArray);
+    slyGameApp.gemChoice();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -44,10 +46,38 @@ slyGameApp.rng = (min=0,max) => {
                 : Math.floor(Math.random() * max); //if false number between 0 inclusive to num2 exclusive
 }
 
+//this function creates the item array based on: number of items, weight difficulty, value difficulty
 slyGameApp.createItems = () => {
 
 }
 
+//this function will dynamically insert recipes into the html
+slyGameApp.createGems = function () {
+    $(".gemGallery").empty(); //clear out any gems already in gallery
+    let i=0;
+    // go through the items array, and create each 
+    slyGameApp.itemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
+        
+        const htmlToAppend = `
+        <button id="gem${i}" class="gemButton hide">
+                        <div class="gem">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <ul class="gemInfo">
+                            <li class="weight">
+                                <p>${gemObj.weight}KG</p>
+                            </li>
+                            <li class="value">
+                                <p>$${gemObj.value}</p>
+                            </li>
+                        </ul>
+                    </button>`;
+        $(".gemGallery").append(htmlToAppend);
+        i++;
+    })
+
+    $('.gemButton').toggleClass('hide');
+}
 
 
 //Test knapsack algorithm that receives an array of items to 
@@ -83,6 +113,8 @@ slyGameApp.knapsackAlgorithm = (itemArray) => {
             // END OF FOR LOOP
         }
     }   
+    slyGameApp.maxValue = dpMatrix[rows-1][cols-1];
+    console.log(slyGameApp.maxValue);
 }
 
 //debug function to print array to conosle 
@@ -132,32 +164,11 @@ slyGameApp.createMatrix = (rows, cols) => {
     return matrix;
 }
 
-//this function will dynamically insert recipes into the html
-slyGameApp.createGems = function () {
-    $(".gemGallery").empty(); //clear out any gems already in gallery
-    let i=0;
-    // go through the items array, and create each 
-    slyGameApp.itemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
-        
-        const htmlToAppend = `
-        <button id="gem${i}" class="gemButton hide">
-                        <div class="gem">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                        <ul class="gemInfo">
-                            <li class="weight">
-                                <p>${gemObj.weight}KG</p>
-                            </li>
-                            <li class="value">
-                                <p>$${gemObj.weight}</p>
-                            </li>
-                        </ul>
-                    </button>`;
-        $(".gemGallery").append(htmlToAppend);
-        i++;
-    })
-
-    $('.gemButton').toggleClass('hide');
+//This function lets user know what gems are currently selected
+slyGameApp.gemChoice = function() {
+    $('.gemButton').on('click', function() {
+        $(this).toggleClass('chosenGem');
+    });
 }
 
 
