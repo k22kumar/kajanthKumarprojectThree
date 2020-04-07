@@ -1,10 +1,10 @@
-const slyGameApp = {
-  //This is a game that highlights the programming problem known as the "knapsack problem". The user is tasked with selecting items from a set such that the total weight does not exceed a certain weight while attempting to maximize the total value from their selection.
+const gemGameApp = {
+  //This is a game that highlights the programming problem known as the "knapsack problem". The user is tasked with selecting gems from a set such that the total weight does not exceed a certain weight while attempting to maximize the total value from their selection.
 
   //variables
 
-  //itemsArray: this is an array used to store the items that have a WEIGHT, and a VALUE
-  itemsArray: [
+  //gemsArray: this is an array used to store the gems that have a WEIGHT, and a VALUE
+  gemsArray: [
     { weight: 2, value: 10 },
     { weight: 5, value: 10 },
     { weight: 1, value: 20 },
@@ -17,46 +17,58 @@ const slyGameApp = {
   currentCapacity: 0,
   currentValue: 0,
   maxValue:0,
-  numberOfItems: 2,
+  difficulty:1,
+  numberOfGems: 2,
   weightDifficulty: 2,
   valueDifficulty: 1,
 
   //JQuery shorthands
 
-  //item is the specific item to be stolen
-  $item: $("item"),
+  //gem is the specific gem to be stolen
+  $gem: $("gem"),
   $submit: $("submit"),
 };
 
-//slyGameApp methods
-slyGameApp.init = function () {
+//gemGameApp methods
+gemGameApp.init = function () {
 
-    slyGameApp.createGems();
-    slyGameApp.knapsackAlgorithm(slyGameApp.itemsArray);
-    slyGameApp.gemChoice();
+    gemGameApp.createGemsArray();
+    gemGameApp.createGems();
+    gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
+    gemGameApp.gemChoice();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
 //NEED TO CHANGE OR LOOK UP DEFAULT VALUES
 //I copied part of the code for selecting a random value from an inclusive set from this link: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
-//The reason is so that if I want to generate a value for an array index I can do rng(length of array) and same time I can also if I want to make a random number between 3 and 7 (for weights/values of items, I can do that using this)
-slyGameApp.rng = (min=0,max) => {
+//The reason is so that if I want to generate a value for an array index I can do rng(length of array) and same time I can also if I want to make a random number between 3 and 7 (for weights/values of gems, I can do that using this)
+gemGameApp.rng = (min=0,max) => {
     return min > 0 
                 ? Math.floor((Math.random() * (max - min + 1)) + min)  //if true rng between selection
                 : Math.floor(Math.random() * max); //if false number between 0 inclusive to num2 exclusive
 }
 
-//this function creates the item array based on: number of items, weight difficulty, value difficulty
-slyGameApp.createItems = () => {
-
+//this function creates the gem array based on: number of gems, weight difficulty, value difficulty
+gemGameApp.createGemsArray = () => {
+    //empty the gems array
+    gemGameApp.gemsArray = [];
+    let weight=0;
+    let value=0;
+    //create a number of gems equal to the current gemNumber with rng weights and values
+    for(i=0; i<gemGameApp.numberOfGems;i++) {
+        weight = gemGameApp.rng(1, gemGameApp.weightDifficulty);
+        value = gemGameApp.rng(1, gemGameApp.valueDifficulty)*10;
+        const newGem = {weight: weight, value: value};
+        gemGameApp.gemsArray.push(newGem);
+    }
 }
 
 //this function will dynamically insert recipes into the html
-slyGameApp.createGems = function () {
+gemGameApp.createGems = function () {
     $(".gemGallery").empty(); //clear out any gems already in gallery
     let i=0;
-    // go through the items array, and create each 
-    slyGameApp.itemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
+    // go through the gems array, and create each 
+    gemGameApp.gemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
         
         const htmlToAppend = `
         <button id="gem${i}" class="gemButton hide">
@@ -80,45 +92,45 @@ slyGameApp.createGems = function () {
 }
 
 
-//Test knapsack algorithm that receives an array of items to 
-slyGameApp.knapsackAlgorithm = (itemArray) => {
-    // console.log(itemArray);
-    itemArray.sort(slyGameApp.itemsCompareWeight); //sort array based on weight
-    // console.log(itemArray);
+//Test knapsack algorithm that receives an array of gems to 
+gemGameApp.knapsackAlgorithm = (gemArray) => {
+    // console.log(gemArray);
+    gemArray.sort(gemGameApp.gemsCompareWeight); //sort array based on weight
+    // console.log(gemsArray);
 
     //initialize memoization array X AXIS IS CARRYING CAPACITY, Y AXIS IS ITEM TO KEEP OR NOT 
-    const rows = itemArray.length + 1;
-    const cols = slyGameApp.maxCapacity + 1;
-    const dpMatrix =  slyGameApp.createMatrix(rows, cols);
+    const rows = gemArray.length + 1;
+    const cols = gemGameApp.maxCapacity + 1;
+    const dpMatrix =  gemGameApp.createMatrix(rows, cols);
     let withItemValue = 0;
     let withOutItemValue = 0;
     let currentCapacity = 0;
 
     
     for (let i = 1; i < rows; i++){
-        //loop through each row represeting the sorted item
+        //loop through each row represeting the sorted gem
         
         for (let capacity = 1; capacity < cols; capacity++){
             //loop through each column representing the increasing bag size
-            //if we CANNOT fit the item, than max possible value is using previous items ie one row before same column. 
-            if(itemArray[i-1].weight > capacity ) {
+            //if we CANNOT fit the gem, than max possible value is using previous gems ie one row before same column. 
+            if(gemArray[i-1].weight > capacity ) {
                 dpMatrix[i][capacity] = dpMatrix[i-1][capacity];
             } else {
-                //check the values for if we take item vs if we dont take item
+                //check the values for if we take gem vs if we dont take gem
                 withOutItemValue = dpMatrix[i-1][capacity];
-                withItemValue = itemArray[i-1].value + dpMatrix[i-1][capacity-itemArray[i-1].weight];
+                withItemValue = gemArray[i-1].value + dpMatrix[i-1][capacity-gemArray[i-1].weight];
                 //assign the higher value to the matrix
                 dpMatrix[i][capacity] = Math.max(withItemValue, withOutItemValue);
             }
             // END OF FOR LOOP
         }
     }   
-    slyGameApp.maxValue = dpMatrix[rows-1][cols-1];
-    console.log(slyGameApp.maxValue);
+    gemGameApp.maxValue = dpMatrix[rows-1][cols-1];
+    console.log("max value is:" + gemGameApp.maxValue);
 }
 
 //debug function to print array to conosle 
-slyGameApp.print2dArray = (matrix) => {
+gemGameApp.print2dArray = (matrix) => {
     const numOfRows = matrix.length;
     const numOfColumns = matrix[0].length;
     let row ="";
@@ -131,12 +143,12 @@ slyGameApp.print2dArray = (matrix) => {
     }
 }
 
-//Utility function that helps sort an item array based on its weight
-slyGameApp.itemsCompareWeight = (item1, item2) => {
+//Utility function that helps sort an gem array based on its weight
+gemGameApp.gemsCompareWeight = (gem1, gem2) => {
         // Use toUpperCase() to ignore character casing
 
-        const weight1 = item1.weight;
-        const weight2 = item2.weight;
+        const weight1 = gem1.weight;
+        const weight2 = gem2.weight;
         let comparison = 0;
 
         if (weight1 > weight2) {
@@ -151,7 +163,7 @@ slyGameApp.itemsCompareWeight = (item1, item2) => {
 //DISCLAIMER I COPIED THIS CODE WITH SOME SMALL EDITS FROM THIS STACK OVERFLOW QUESTION
 //https://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript
 //I had alot of trouble tring to figure out how to create a 2d matrix DYNAMICALLY using what we learned in class
-slyGameApp.createMatrix = (rows, cols) => {
+gemGameApp.createMatrix = (rows, cols) => {
     let matrix = [];
     for (var i = 0; i < rows; i++) {
         matrix.push([]);
@@ -165,7 +177,7 @@ slyGameApp.createMatrix = (rows, cols) => {
 }
 
 //This function lets user know what gems are currently selected
-slyGameApp.gemChoice = function() {
+gemGameApp.gemChoice = function() {
     $('.gemButton').on('click', function() {
         $(this).toggleClass('chosenGem');
     });
@@ -174,5 +186,5 @@ slyGameApp.gemChoice = function() {
 
 //document ready
 $(document).ready(function () {
-    slyGameApp.init();
+    gemGameApp.init();
 });
