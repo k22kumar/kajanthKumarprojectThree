@@ -59,8 +59,8 @@ gemGameApp.createGemsArray = () => {
 gemGameApp.createGems = function () {
     $(".gemGallery").empty(); //clear out any gems already in gallery
     let i=0;
-    // go through the gems array, and create each 
-    gemGameApp.gemsArray.forEach(function (gemObj) { //for each recipe in the response JSON recipes
+    // go through the gems array, and create each gem
+    gemGameApp.gemsArray.forEach(function (gemObj) { 
         
         const htmlToAppend = `
         <button id="gem${i}" class="gemButton hide">
@@ -194,13 +194,28 @@ gemGameApp.checkAnswer = () => {
 
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
+    $(".time").text("correct");
     gemGameApp.updateScore(newScore);
+    gemGameApp.updateDifficulty();
+    console.log(gemGameApp.difficulty);
+    gemGameApp.updateCapacity();
+    gemGameApp.resetButtons();
+    gemGameApp.createGemsArray();
+    gemGameApp.createGems();
+    gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
+    gemGameApp.gemChoice();
 }
 
 //this function handles the fail state of the game
 gemGameApp.failureHandler = () => {
     console.log("false");
+    gemGameApp.resetButtons();
+    $('.time').text("failed");
 }
+
+gemGameApp.resetButtons = () => {
+  $(".gemButton").removeClass("chosenGem");
+};
 
 //function to update the score, if no param is given defaults to zero thus resetting the score
 gemGameApp.updateScore = (scoreToAdd = 0) => {
@@ -209,6 +224,29 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
     gemGameApp.score += scoreToAdd;
     const newScore = `Score: $${gemGameApp.score}`;
     $('.score').text(newScore);
+}
+
+//function to update the capacity
+gemGameApp.updateCapacity = () => {
+    $('.capacity').text(`Max Capacity: ${gemGameApp.maxCapacity}KG`);
+    console.log(gemGameApp.maxCapacity);
+}
+
+gemGameApp.updateDifficulty = () => {
+    gemGameApp.difficulty++;
+    $(".difficulty").text(`Level: ${gemGameApp.difficulty}`);
+    if(gemGameApp.difficulty % 2 ==0) {
+        gemGameApp.valueDifficulty++;
+    }
+    if (gemGameApp.difficulty % 3 == 0 && gemGameApp.difficulty <13) {
+      gemGameApp.numberOfGems++;
+    }
+    if (gemGameApp.difficulty % 4 == 0) {
+      gemGameApp.maxCapacity++;
+    }
+    if (gemGameApp.difficulty % 5 == 0) {
+      gemGameApp.weightDifficulty++;
+    }
 }
 
 //document ready
