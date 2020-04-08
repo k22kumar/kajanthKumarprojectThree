@@ -12,15 +12,12 @@ const gemGameApp = {
   currentValue: 0,
   maxValue:0,
   difficulty:1,
-  numberOfGems: 5,
-  weightDifficulty: 4,
-  valueDifficulty: 4,
+  numberOfGems: 3,
+  weightDifficulty: 2,
+  valueDifficulty: 2,
+  score: 0,
 
   //JQuery shorthands
-
-  //gem is the specific gem to be stolen
-  $gem: $("gem"),
-  $submit: $("submit"),
 };
 
 //gemGameApp methods
@@ -99,8 +96,6 @@ gemGameApp.knapsackAlgorithm = (gemArray) => {
     const dpMatrix =  gemGameApp.createMatrix(rows, cols);
     let withItemValue = 0;
     let withOutItemValue = 0;
-    let currentCapacity = 0;
-
     
     for (let i = 1; i < rows; i++){
         //loop through each row represeting the sorted gem
@@ -179,7 +174,7 @@ gemGameApp.gemChoice = function() {
 }
 
 //This function will check the answer of users 
-gemGameApp.checkAnswer = function() {
+gemGameApp.checkAnswer = () => {
     $('.submit').on('click', function() {
         const $chosenGems = $('.gemButton.chosenGem');
         let totalWeight =0;
@@ -191,10 +186,19 @@ gemGameApp.checkAnswer = function() {
           totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
         totalValue === gemGameApp.maxValue ?
-        console.log("correct") :
+        gemGameApp.updateScore(totalValue) :
         console.log("false");
         console.log("value " + totalValue + " weight " + totalWeight);
     })
+}
+
+//function to update the score, if no param is given defaults to zero thus resetting the score
+gemGameApp.updateScore = (scoreToAdd = 0) => {
+    scoreToAdd === 0 ?
+    gemGameApp.score = 0 :
+    gemGameApp.score += scoreToAdd;
+    const newScore = `Score: ${gemGameApp.score}`;
+    $('.score').text(newScore);
 }
 
 //document ready
