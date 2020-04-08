@@ -14,7 +14,7 @@ const gemGameApp = {
   difficulty:1,
   numberOfGems: 3,
   weightDifficulty: 2,
-  valueDifficulty: 2,
+  valueDifficulty: 1,
   score: 0,
 
   //JQuery shorthands
