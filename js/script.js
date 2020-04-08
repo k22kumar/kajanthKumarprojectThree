@@ -194,7 +194,7 @@ gemGameApp.checkAnswer = () => {
 
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
-    $(".time").text("correct");
+    $(".time").text(" correct ");
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
     console.log(gemGameApp.difficulty);
@@ -210,7 +210,7 @@ gemGameApp.sucessHandler = (newScore) => {
 gemGameApp.failureHandler = () => {
     console.log("false");
     gemGameApp.resetButtons();
-    $('.time').text("failed");
+    $('.time').text(" failed ");
     alert('max value should have added up to: ' + gemGameApp.maxValue);
 }
 
@@ -223,19 +223,19 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
     scoreToAdd === 0 ?
     gemGameApp.score = 0 :
     gemGameApp.score += scoreToAdd;
-    const newScore = `Score: $${gemGameApp.score}`;
+    const newScore = ` Score: $${gemGameApp.score} `;
     $('.score').text(newScore);
 }
 
 //function to update the capacity
 gemGameApp.updateCapacity = () => {
-    $('.capacity').text(`Max Capacity: ${gemGameApp.maxCapacity}KG`);
+    $('.capacity').text(` Max Capacity: ${gemGameApp.maxCapacity}KG` );
     console.log(gemGameApp.maxCapacity);
 }
 
 gemGameApp.updateDifficulty = () => {
     gemGameApp.difficulty++;
-    $(".difficulty").text(`Level: ${gemGameApp.difficulty}`);
+    $(".difficulty").text(` Level: ${gemGameApp.difficulty}` );
     if(gemGameApp.difficulty % 2 ==0) {
         gemGameApp.valueDifficulty++;
     }
