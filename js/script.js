@@ -185,11 +185,21 @@ gemGameApp.checkAnswer = () => {
           totalWeight += parseInt($(this).find(".weight p").text().slice(0, -2));
           totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
-        totalValue === gemGameApp.maxValue ?
-        gemGameApp.updateScore(totalValue) :
-        console.log("false");
+        totalValue === gemGameApp.maxValue
+          ? gemGameApp.sucessHandler(totalValue)
+          : gemGameApp.failureHandler();
         console.log("value " + totalValue + " weight " + totalWeight);
     })
+}
+
+//this function handles the sucess state of the game recieving the score to be added 
+gemGameApp.sucessHandler = (newScore) => {
+    gemGameApp.updateScore(newScore);
+}
+
+//this function handles the fail state of the game
+gemGameApp.failureHandler = () => {
+    console.log("false");
 }
 
 //function to update the score, if no param is given defaults to zero thus resetting the score
@@ -197,7 +207,7 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
     scoreToAdd === 0 ?
     gemGameApp.score = 0 :
     gemGameApp.score += scoreToAdd;
-    const newScore = `Score: ${gemGameApp.score}`;
+    const newScore = `Score: $${gemGameApp.score}`;
     $('.score').text(newScore);
 }
 
