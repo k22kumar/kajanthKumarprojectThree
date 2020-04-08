@@ -4,13 +4,7 @@ const gemGameApp = {
   //variables
 
   //gemsArray: this is an array used to store the gems that have a WEIGHT, and a VALUE
-  gemsArray: [
-    { weight: 2, value: 10 },
-    { weight: 5, value: 10 },
-    { weight: 1, value: 20 },
-    { weight: 4, value: 30 },
-    { weight: 3, value: 40 },
-  ],
+  gemsArray: [],
 
   //The carrying capacity of the character (can only carry 5 KG)
   maxCapacity: 5,
@@ -18,9 +12,9 @@ const gemGameApp = {
   currentValue: 0,
   maxValue:0,
   difficulty:1,
-  numberOfGems: 6,
+  numberOfGems: 5,
   weightDifficulty: 4,
-  valueDifficulty: 10,
+  valueDifficulty: 4,
 
   //JQuery shorthands
 
@@ -188,10 +182,18 @@ gemGameApp.gemChoice = function() {
 gemGameApp.checkAnswer = function() {
     $('.submit').on('click', function() {
         const $chosenGems = $('.gemButton.chosenGem');
-        console.log($chosenGems);
-        $chosenGems.each(function (gembutton) {
-          console.log(gembutton);
+        let totalWeight =0;
+        let totalValue =0;
+        $chosenGems.each(function () {
+          console.log($(this).find('.weight p').text().slice(0,-2));
+          //take the values in each gem p tag and add them up by parsing to int without any symbols
+          totalWeight += parseInt($(this).find(".weight p").text().slice(0, -2));
+          totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
+        totalValue === gemGameApp.maxValue ?
+        console.log("correct") :
+        console.log("false");
+        console.log("value " + totalValue + " weight " + totalWeight);
     })
 }
 

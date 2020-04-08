@@ -519,6 +519,8 @@ main {
 }
 
 .gemButton {
+  width: 85px;
+  height: 85px;
   padding: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -550,7 +552,8 @@ main {
 }
 
 .gemButton .gem {
-  padding: 5px 0;
+  padding: 0;
+  margin: auto;
   font-size: 3.3rem;
 }
 
