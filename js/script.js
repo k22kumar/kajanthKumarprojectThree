@@ -211,6 +211,7 @@ gemGameApp.failureHandler = () => {
     console.log("false");
     gemGameApp.resetButtons();
     $('.time').text("failed");
+    alert('max value should have added up to: ' + gemGameApp.maxValue);
 }
 
 gemGameApp.resetButtons = () => {
