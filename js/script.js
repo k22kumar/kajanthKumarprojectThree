@@ -207,7 +207,7 @@ gemGameApp.checkAnswer = () => {
           totalWeight += parseInt($(this).find(".weight p").text().slice(0, -2));
           totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
-        totalValue === gemGameApp.maxValue;
+        totalValue === gemGameApp.maxValue
           ? gemGameApp.sucessHandler(totalValue)
           : gemGameApp.failureHandler();
     })
@@ -344,21 +344,24 @@ gemGameApp.resetGame = () => {
 gemGameApp.instructionsButton = () => {
     $('#instructions').on('click', function() {
         gemGameApp.showInstructions();
-        console.log('instructions');
     })
 }
 
 //this function will show the instructions to player
 gemGameApp.showInstructions = () => {
-    $(".instructionsText").removeClass(hide);
-    $('.instructions').addClass('hide');
-    $(".instructions").addClass("hide");
-    $(".instructions").addClass("hide");
+    $(".instructionsText").removeClass('hide');
+    $('#restart').addClass('hide');
+    $("#instructions").addClass("hide");
+    $('.finalScore').addClass('hide');
+    $("#playGameMenu").removeClass('hide');
 }
 
 //function to play game IF started from the instructions menu
 gemGameApp.playGame = () => {
     $('#playGameMenu').on('click', function () {
+        gemGameApp.closeModal();
+        gemGameApp.resetGame();
+        $('#restart').RemoveClass('hide');
         console.log('playgame');
     })
 }
