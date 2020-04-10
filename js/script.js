@@ -54,6 +54,7 @@ gemGameApp.init = function () {
     gemGameApp.restartGame();
     gemGameApp.closeButton();
     gemGameApp.instructionsButton();
+    gemGameApp.playGame();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -298,6 +299,7 @@ gemGameApp.hambMenu = () => {
   $(".hambMenu").on("click", function () {
     gemGameApp.openModal();
     $('.closeModal').addClass('hide');
+    gemGameApp.timer.pause();
   });
 };
 
@@ -359,6 +361,7 @@ gemGameApp.showInstructions = () => {
 //function to play game IF started from the instructions menu
 gemGameApp.playGame = () => {
     $('#playGameMenu').on('click', function () {
+        console.log("playgame1");
         gemGameApp.closeModal();
         gemGameApp.resetGame();
         $('#restart').RemoveClass('hide');
