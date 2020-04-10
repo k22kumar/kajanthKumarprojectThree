@@ -44,6 +44,14 @@ main {
         width: 65px;
     }
 
+.hambMenu {
+    transition: all 0.3s ease-in-out;
+}
+
+.hambMenu:hover, .hambMenu:focus, .hambMenu:active {
+    color: $accent;
+}
+
 
 .gameContainer {
     width: 100%;
@@ -64,7 +72,7 @@ main {
     color: $pinkGem;
     margin: 5px;
     background-color: $selection;
-    border-radius: 5px;
+    border-radius: 8px;
     overflow: hidden;
     line-height: 1.2;
     white-space: nowrap;

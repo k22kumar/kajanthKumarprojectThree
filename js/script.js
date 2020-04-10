@@ -53,17 +53,13 @@ gemGameApp.init = function () {
     gemGameApp.gemChoice();
     gemGameApp.checkAnswer();
     gemGameApp.openMenu();
+    gemGameApp.closeModal();
 }
 
 gemGameApp.openMenu = () => {
-    $('.catSymbol').on('click', function() {
-        Swal.fire({
-          title: "Game Menu",
-          text: "Restart",
-          icon: "error",
-          confirmButtonText: "Cool",
-        });
-    });
+    $('.hambMenu').on('click', function() {
+        $('.modal').removeClass('hide');
+    })
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -304,6 +300,14 @@ gemGameApp.checkTimer = () => {
                     gemGameApp.timer.pause();
                 }
                 },500);
+}
+
+//function to close modal
+gemGameApp.closeModal = () => {
+    $('.closeModal').on('click', function () {
+        $('.modal').addClass('hide');
+        console.log($('.modal'));
+    })
 }
 
 //document ready

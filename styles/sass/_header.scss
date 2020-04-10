@@ -14,17 +14,17 @@
     align-items: center;
 
     .modalContent {
-        width: 200px;
-        border-radius: 10px;
+        width: 260px;
+        border-radius: 8px;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: $bgBlack;
-        padding: 40px 10px;
+        padding: 40px 20px;
 
-        .closeModal, .modalOption {
+        .closeModal, .modalOption, .modalTitle {
             font-size: 1.3rem;
             color: white;
             transition: all 0.3s ease-in-out;
@@ -32,10 +32,12 @@
         }
         .closeModal {
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 10px;
+            top: 10px;
+            padding: 5px;
+            font-size: 1.8rem;
         }
-        .modalOption {
+        .modalOption, .modalTitle {
             font-family: 'Poller One', cursive;
         }
         .modalOption:hover, .modalOption:active, .modalOption:focus, .closeModal:hover, .closeModal:active, .closeModal:focus {
@@ -72,7 +74,7 @@ header {
         left: 50%;
         top: 17px;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     .artist {
@@ -88,7 +90,7 @@ header {
     .playGame {
         font-size: 4rem;
         padding: 15px;
-        border-radius: 15px;
+        border-radius: 8px;
         left: 20%;
         top: 75%;
         transition: all 0.3s ease-in;

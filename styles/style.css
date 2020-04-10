@@ -492,8 +492,8 @@ button {
 }
 
 .modal .modalContent {
-  width: 200px;
-  border-radius: 10px;
+  width: 260px;
+  border-radius: 8px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -509,10 +509,10 @@ button {
       -ms-flex-align: center;
           align-items: center;
   background-color: #0e0e0e;
-  padding: 40px 10px;
+  padding: 40px 20px;
 }
 
-.modal .modalContent .closeModal, .modal .modalContent .modalOption {
+.modal .modalContent .closeModal, .modal .modalContent .modalOption, .modal .modalContent .modalTitle {
   font-size: 1.3rem;
   color: white;
   -webkit-transition: all 0.3s ease-in-out;
@@ -522,11 +522,13 @@ button {
 
 .modal .modalContent .closeModal {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
+  padding: 5px;
+  font-size: 1.8rem;
 }
 
-.modal .modalContent .modalOption {
+.modal .modalContent .modalOption, .modal .modalContent .modalTitle {
   font-family: 'Poller One', cursive;
 }
 
@@ -569,7 +571,7 @@ header .mainTitle {
   left: 50%;
   top: 17px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 header .artist {
@@ -585,7 +587,7 @@ header .artist {
 header .playGame {
   font-size: 4rem;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 8px;
   left: 20%;
   top: 75%;
   -webkit-transition: all 0.3s ease-in;
@@ -661,6 +663,15 @@ main {
   width: 65px;
 }
 
+.hambMenu {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.hambMenu:hover, .hambMenu:focus, .hambMenu:active {
+  color: #99622b;
+}
+
 .gameContainer {
   width: 100%;
   height: 100%;
@@ -686,7 +697,7 @@ main {
   color: #caa9ca;
   margin: 5px;
   background-color: #3d3d3d;
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
   line-height: 1.2;
   white-space: nowrap;
@@ -755,3 +766,9 @@ main {
 }
 
 /* main styles end*/
+@media (max-width: 600px) {
+  .modalContent {
+    width: 260px;
+    font-size: 1.4rem;
+  }
+}
