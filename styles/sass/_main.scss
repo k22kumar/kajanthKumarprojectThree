@@ -16,20 +16,22 @@
 main {
     height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
+    background-color: #0e0e0e;
 }
 
 .playerInfo , .stealInfo {
     font-size: 2.5rem;
-    background-color:  palegoldenrod;
+    background-color:  #042337;
     padding: 10px;
-    font-family: 'Poller One', cursive;
+    margin: 10px;
+    border-radius: 8px;
+    color: white;
 }
 
 .playerInfo {
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    margin: 10px;
 }
 
 .playArea {
@@ -114,8 +116,15 @@ main {
         text-align: center;
     }
     .submit {
+    font-family: 'Poller One', cursive;
+    color: white;
+    background-color: #99622b;
     padding: 15px;
-    background-color: red;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    }
+    .submit:hover, .submit:active, .submit:hover {
+        background-color: #caa9ca;
     }
 }
 

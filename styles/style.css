@@ -469,7 +469,7 @@ header {
       -ms-flex-align: center;
           align-items: center;
   height: 100vh;
-  background-color: #000000;
+  background-color: #0e0e0e;
 }
 
 header .background img {
@@ -534,13 +534,16 @@ header .playGame:visited {
 main {
   height: 100vh;
   font-family: 'Lexend Deca', sans-serif;
+  background-color: #0e0e0e;
 }
 
 .playerInfo, .stealInfo {
   font-size: 2.5rem;
-  background-color: palegoldenrod;
+  background-color: #042337;
   padding: 10px;
-  font-family: 'Poller One', cursive;
+  margin: 10px;
+  border-radius: 8px;
+  color: white;
 }
 
 .playerInfo {
@@ -551,7 +554,6 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 10px;
 }
 
 .playArea {
@@ -649,8 +651,17 @@ main {
 }
 
 .stealInfo .submit {
+  font-family: 'Poller One', cursive;
+  color: white;
+  background-color: #99622b;
   padding: 15px;
-  background-color: red;
+  border-radius: 8px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover {
+  background-color: #caa9ca;
 }
 
 /* main styles end*/
