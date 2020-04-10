@@ -111,9 +111,7 @@ gemGameApp.createGems = function () {
 
 //Test knapsack algorithm that receives an array of gems to 
 gemGameApp.knapsackAlgorithm = (gemArray) => {
-    // console.log(gemArray);
     gemArray.sort(gemGameApp.gemsCompareWeight); //sort array based on weight
-    // console.log(gemsArray);
 
     //initialize memoization array X AXIS IS CARRYING CAPACITY, Y AXIS IS ITEM TO KEEP OR NOT 
     const rows = gemArray.length + 1;
@@ -142,6 +140,7 @@ gemGameApp.knapsackAlgorithm = (gemArray) => {
     }   
     gemGameApp.maxValue = dpMatrix[rows-1][cols-1];
     console.log("knapsack value is:" + gemGameApp.maxValue);
+    gemGameApp.print2dArray(dpMatrix);
 }
 
 //debug function to print array to conosle 
@@ -154,7 +153,6 @@ gemGameApp.print2dArray = (matrix) => {
         for (j=0;j<numOfColumns; j++){
             row += matrix[i][j];
         }
-        console.log(row);
     }
 }
 
@@ -205,13 +203,11 @@ gemGameApp.checkAnswer = () => {
         let totalWeight =0;
         let totalValue =0;
         $chosenGems.each(function () {
-          console.log($(this).find('.weight p').text().slice(0,-2));
           //take the values in each gem p tag and add them up by parsing to int without any symbols
           totalWeight += parseInt($(this).find(".weight p").text().slice(0, -2));
           totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
-        console.log(totalValue + " " + gemGameApp.maxValue)
-        totalValue === gemGameApp.maxValue
+        totalValue === gemGameApp.maxValue;
           ? gemGameApp.sucessHandler(totalValue)
           : gemGameApp.failureHandler();
     })
@@ -221,7 +217,6 @@ gemGameApp.checkAnswer = () => {
 gemGameApp.sucessHandler = (newScore) => {
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
-    console.log(gemGameApp.difficulty);
     gemGameApp.updateCapacity();
     gemGameApp.resetButtons();
     gemGameApp.createGemsArray();
@@ -238,7 +233,6 @@ gemGameApp.failureHandler = () => {
     $('.finalScore').text(`Final Score: Level ${gemGameApp.difficulty} with ${gemGameApp.score}$`);
     $('.finalScore').removeClass('hide');
     gemGameApp.openModal();
-    console.log("fail");
 }
 
 gemGameApp.resetButtons = () => {
@@ -257,7 +251,6 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
 //function to update the capacity
 gemGameApp.updateCapacity = () => {
     $('.capacity').text(` Capacity: ${gemGameApp.maxCapacity}KG` );
-    console.log(gemGameApp.maxCapacity);
 }
 
 //function to increase difficulty steadily upon sucessful rounds
@@ -324,7 +317,8 @@ gemGameApp.restartGame = () => {
 
 //this function will reset the game from scratch
 gemGameApp.resetGame = () => {
-    gemGameApp.maxCapacity = 0;
+    gemGameApp.gemsArray = [];
+    gemGameApp.maxCapacity = 5;
     gemGameApp.maxValue = 0;
     gemGameApp.difficulty = 1;
     gemGameApp.numberOfGems = 3;
@@ -333,15 +327,15 @@ gemGameApp.resetGame = () => {
     gemGameApp.score = 0;
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
-    gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
-    gemGameApp.updateCapacity();
     gemGameApp.timer.pause();
     $(".time").text(parseInt(15));
     gemGameApp.timer.totalSeconds = 15;
     gemGameApp.timer.start();
+    gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
+    gemGameApp.updateCapacity();
     gemGameApp.checkTimer();
     gemGameApp.gemChoice();
-    gemGameApp.checkAnswer();
+    // gemGameApp.checkAnswer();
     $(".finalScore").addClass("hide");
     $(".modalTitle").text("Gem Heist!");
 }
