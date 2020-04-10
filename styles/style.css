@@ -454,17 +454,68 @@ img {
   height: auto;
 }
 
+.toUpper {
+  text-transform: uppercase;
+}
+
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 100vh;
-  background-image: url("../assets/catwoman.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: #000000;
+}
+
+header .background img {
+  max-height: 100%;
+}
+
+header .background {
+  position: relative;
+  height: 100%;
+}
+
+header .playGame, header .mainTitle {
+  position: absolute;
+  font-size: 4rem;
+  color: white;
+  background-color: #99622b;
+  font-family: 'Poller One', cursive;
+}
+
+header .mainTitle {
+  left: 50%;
+  top: 17px;
+}
+
+header .playGame {
+  font-size: 4rem;
+  padding: 15px;
+  border-radius: 15px;
+  left: 20%;
+  top: 75%;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  text-decoration: none;
+}
+
+header .playGame:hover, header .playGame:active, header .playGame:focus {
+  background-color: #caa9ca;
+}
+
+header .playGame:visited {
+  color: none;
 }
 
 /* main styles start*/
 /* flex styles*/
-.gameContainer, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
+.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -474,7 +525,7 @@ header {
   display: none;
 }
 
-.gameContainer, .gemGallery, .gem, .value, .weight, .gemButton {
+.gameContainer, .gemGallery, .gem, .value, .weight, .gemButton, .stealInfo {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -482,6 +533,14 @@ header {
 
 main {
   height: 100vh;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.playerInfo, .stealInfo {
+  font-size: 2.5rem;
+  background-color: palegoldenrod;
+  padding: 10px;
+  font-family: 'Poller One', cursive;
 }
 
 .playerInfo {
@@ -489,9 +548,10 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 10px;
-  font-size: 1.3rem;
 }
 
 .playArea {
@@ -503,6 +563,11 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.catSymbol {
+  width: 60px;
+  height: 60px;
 }
 
 .gameContainer {
@@ -549,6 +614,7 @@ main {
   padding: 5px;
   color: black;
   width: calc(50%);
+  font-family: 'Lexend Deca', sans-serif;
 }
 
 .gemButton .gem {
@@ -570,9 +636,21 @@ main {
   background-color: lightgreen;
 }
 
-.submit {
-  width: 70%;
+.stealInfo {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.stealInfo li {
+  width: 50%;
+  text-align: center;
+}
+
+.stealInfo .submit {
   padding: 15px;
+  background-color: red;
 }
 
 /* main styles end*/

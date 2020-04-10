@@ -1,8 +1,47 @@
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .background img{
+        max-height: 100%;
+    }
+
+    .background {
+        position: relative;
+        height: 100%;
+    }
     height: 100vh;
-    background-image: url("../assets/catwoman.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    
+    background-color: #000000;
+
+    .playGame, .mainTitle {
+        position: absolute;
+        font-size: 4rem;
+        color: white;
+        background-color: #99622b;
+        font-family: 'Poller One', cursive;
+    }
+
+    .mainTitle {
+        left: 50%;
+        top: 17px;
+    }
+
+    .playGame {
+        font-size: 4rem;
+        padding: 15px;
+        border-radius: 15px;
+        left: 20%;
+        top: 75%;
+        transition: all 0.3s ease-in;
+        text-decoration: none;
+    }
+    .playGame:hover, , .playGame:active, .playGame:focus {
+        background-color: #caa9ca;
+    }
+
+    .playGame:visited {
+        color: none;
+    }
 }
 

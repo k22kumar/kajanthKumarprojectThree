@@ -2,7 +2,7 @@
 
 /* flex styles*/
 
-.gameContainer, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
+.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
     display: flex;
 }
 
@@ -10,19 +10,26 @@
     display: none;
 }
 
-.gameContainer, .gemGallery, .gem, .value, .weight, .gemButton{
+.gameContainer, .gemGallery, .gem, .value, .weight, .gemButton, .stealInfo{
     justify-content: center;
 }
 main {
     height: 100vh;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.playerInfo , .stealInfo {
+    font-size: 2.5rem;
+    background-color:  palegoldenrod;
+    padding: 10px;
+    font-family: 'Poller One', cursive;
 }
 
 .playerInfo {
     width: 100%;
     justify-content: space-evenly;
-    padding: 10px;
+    align-items: center;
     margin: 10px;
-    font-size: 1.3rem;
 }
 
 .playArea {
@@ -30,6 +37,12 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
+.catSymbol {
+    width: 60px;
+    height: 60px;
+}
+
 .gameContainer {
     width: 100%;
     height: 100%;
@@ -65,6 +78,7 @@ main {
         padding: 5px;
         color: black;
         width: calc(50%);
+        font-family: 'Lexend Deca', sans-serif;
     }
 
     .gem{
@@ -92,10 +106,21 @@ main {
     background-color: lightgreen;
 }
 
-.submit {
-    width: 70%;
+.stealInfo{
+    align-items: center;
+    width: 100%;
+    li {
+        width: 50%;
+        text-align: center;
+    }
+    .submit {
     padding: 15px;
+    background-color: red;
+    }
 }
+
+
+
 
 
 

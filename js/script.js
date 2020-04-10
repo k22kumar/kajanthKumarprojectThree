@@ -10,28 +10,63 @@ const gemGameApp = {
   maxCapacity: 5,
   currentCapacity: 0,
   currentValue: 0,
-  maxValue:0,
-  difficulty:1,
+  maxValue: 0,
+  difficulty: 1,
   numberOfGems: 3,
   weightDifficulty: 2,
-  valueDifficulty: 1,
+  valueDifficulty: 2,
   score: 0,
 
-  //JQuery shorthands
+  //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
+  timer: {
+    totalSeconds: 60,
+    start: function () {
+      let timer = this;
+      //create an interval as a property and count DOWN from 60
+      this.interval = setInterval(function () {
+        timer.totalSeconds -= 1;
+        $(".time").text(parseInt(timer.totalSeconds % 60));
+      }, 1000);
+    },
+
+    pause: function () {
+      clearInterval(this.interval);
+      //remove the interval property
+      delete this.interval;
+    },
+
+    resume: function () {
+        //if the interval property has been deleted, create a new one ie restart
+      if (!this.interval) this.start();
+    },
+  },
 };
 
 //gemGameApp methods
 gemGameApp.init = function () {
-
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
+    gemGameApp.timer.start();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
+    gemGameApp.updateCapacity();
+    gemGameApp.checkTimer();
     gemGameApp.gemChoice();
     gemGameApp.checkAnswer();
+    gemGameApp.openMenu();
+}
+
+gemGameApp.openMenu = () => {
+    $('.catSymbol').on('click', function() {
+        Swal.fire({
+          title: "Game Menu",
+          text: "Restart",
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
+    });
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
-//NEED TO CHANGE OR LOOK UP DEFAULT VALUES
 //I copied part of the code for selecting a random value from an inclusive set from this link: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
 //The reason is so that if I want to generate a value for an array index I can do rng(length of array) and same time I can also if I want to make a random number between 3 and 7 (for weights/values of gems, I can do that using this)
 gemGameApp.rng = (min=0,max) => {
@@ -194,7 +229,6 @@ gemGameApp.checkAnswer = () => {
 
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
-    $(".time").text(" correct ");
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
     console.log(gemGameApp.difficulty);
@@ -208,10 +242,14 @@ gemGameApp.sucessHandler = (newScore) => {
 
 //this function handles the fail state of the game
 gemGameApp.failureHandler = () => {
-    console.log("false");
     gemGameApp.resetButtons();
-    $('.time').text(" failed ");
-    alert('max value should have added up to: ' + gemGameApp.maxValue);
+    Swal.fire({
+      title: "Game Over!",
+      text: "Restart?",
+      icon: "error",
+      confirmButtonText: "Cool",
+    });
+    // alert('max value should have added up to: ' + gemGameApp.maxValue);
 }
 
 gemGameApp.resetButtons = () => {
@@ -233,21 +271,39 @@ gemGameApp.updateCapacity = () => {
     console.log(gemGameApp.maxCapacity);
 }
 
+//function to increase difficulty steadily upon sucessful rounds
 gemGameApp.updateDifficulty = () => {
     gemGameApp.difficulty++;
     $(".difficulty").text(` Level: ${gemGameApp.difficulty}` );
-    if(gemGameApp.difficulty % 2 ==0) {
+    if(true) {
         gemGameApp.valueDifficulty++;
     }
-    if (gemGameApp.difficulty % 3 == 0 && gemGameApp.difficulty <13) {
+    if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty <13) {
       gemGameApp.numberOfGems++;
     }
-    if (gemGameApp.difficulty % 4 == 0) {
+    if (gemGameApp.difficulty % 3 == 0) {
       gemGameApp.maxCapacity++;
     }
-    if (gemGameApp.difficulty % 5 == 0) {
+    if (gemGameApp.difficulty % 4 == 0) {
       gemGameApp.weightDifficulty++;
     }
+}
+
+//this function periodicly checks the  "global" timer and when it reaches 0 ends the game
+gemGameApp.checkTimer = () => {
+    let endTimer = setInterval(() => {
+                if (gemGameApp.timer.totalSeconds == 0) {
+                    // alert("GAMEOVER");
+                    // Swal.fire({
+                    //   title: "Error!",
+                    //   text: "Do you want to continue",
+                    //   icon: "error",
+                    //   confirmButtonText: "Cool",
+                    // });
+                    clearInterval(endTimer);
+                    gemGameApp.timer.pause();
+                }
+                },500);
 }
 
 //document ready

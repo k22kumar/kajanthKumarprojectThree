@@ -6,34 +6,63 @@
     <title>Gem</title>
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/63b84c9d87.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca|Poller+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-    <header class="hide">
-        <a href="https://sarinsfiles.blogspot.com/2013/09/catwoman-making-of-base-card.html">artist credit</a>
+    <div class="modal hide">
+        <div class="modalContent">
+            <button class="closeModal"><i class="fas fa-times"></i></button>
+            <p class="modalTitle">Menu</p>
+            <button class="modalOption">Restart</button>
+            <button class="modalOption">Instructions</button>
+            <button class="modalOption">Title Page</button>
+        </div>
+    </div>
+    <header class="">
+        <div class="background">
+            <h1 class="mainTitle toUpper">gem heist</h1>
+            <img src="./assets/catwoman.jpg"
+                alt="Female anti-hero Cat Woman from DC Comics wearing black skin tight outfit hanging upside down from ceiling reaching for a gleaming pink gem.">
+            <button href="#main" class="playGame toUpper">play!</button>
+        </div>
+        
+        <!-- <a href="https://sarinsfiles.blogspot.com/2013/09/catwoman-making-of-base-card.html">artist credit</a> -->
     </header>
 
-    <main class="wrapper">
+    <main id="#main" class="wrapper">
         <section class="gameContainer">
             <div class="playArea">
                 <ul class="playerInfo">
                     <li class="difficulty">
                         <p>Level: 1</p>
                     </li>
-                    <li class="capacity">
-                        <p>Max Capacity: 5KG</p>
-                    </li>
                     <li class="time">
-                        <p>timePlaceHolder</p>
+                        <p>60</p>
                     </li>
                     <li class="score">
                         <p>Score: 0</p>
+                    </li>
+                    <li>
+                        <nav class="catNav">
+                            <button class="catSymbol">
+                                <img src="./assets/catWomanIcon.png" alt="">
+                            </button>
+                        </nav>
                     </li>
                 </ul>
                 <div class="gemGallery">
 
                 </div>
-                <button class="submit toUpper">submit</button>
+                <ul class="stealInfo">
+                    <li class="capacity">
+                        <p></p>
+                    </li>
+                    <li>
+                        <button class="submit toUpper">steal!</button>
+                    </li>
+                </ul>
+                
             </div>
            
 
@@ -45,6 +74,7 @@
 
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
