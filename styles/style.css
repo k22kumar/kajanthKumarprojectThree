@@ -580,8 +580,8 @@ header .artist {
   text-decoration: none;
   color: white;
   position: absolute;
-  left: 0;
-  bottom: 10px;
+  left: 20px;
+  bottom: 20px;
 }
 
 header .playGame {
@@ -657,6 +657,9 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .time {
@@ -743,15 +746,18 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
 }
 
 .stealInfo li {
-  width: 50%;
+  margin: 0 10px;
   text-align: center;
 }
 
-.stealInfo .submit {
+.stealInfo .submit, .stealInfo .boost {
   font-family: 'Poller One', cursive;
   color: white;
   background-color: #99622b;
@@ -761,12 +767,12 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
-.stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover {
+.stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover, .stealInfo .boost:hover, .stealInfo .boost:focus, .stealInfo .boost:active {
   background-color: #caa9ca;
 }
 
 /* main styles end*/
-@media (max-width: 600px) {
+@media (max-width: 450px) {
   .modalContent {
     width: 260px;
   }
@@ -775,5 +781,11 @@ main {
   }
   .modalContent .modalOption, .modalContent .modalTitle {
     font-size: 1.5rem;
+  }
+  .playArea {
+    width: 90%;
+  }
+  .playArea .playerInfo, .playArea .stealInfo {
+    font-size: 1.6rem;
   }
 }

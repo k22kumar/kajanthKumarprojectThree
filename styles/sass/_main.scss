@@ -38,6 +38,7 @@ main {
     width: 80%;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .time {
@@ -115,12 +116,13 @@ main {
 
 .stealInfo{
     align-items: center;
+    justify-content: center;
     width: 100%;
     li {
-        width: 50%;
+        margin: 0 10px;
         text-align: center;
     }
-    .submit {
+    .submit, .boost {
     font-family: 'Poller One', cursive;
     color: white;
     background-color: $accent;
@@ -128,7 +130,9 @@ main {
     border-radius: 8px;
     transition: all 0.2s ease-in-out;
     }
-    .submit:hover, .submit:active, .submit:hover {
+
+
+    .submit:hover, .submit:active, .submit:hover , .boost:hover, .boost:focus, .boost:active{
         background-color: $pinkGem;
     }
 }

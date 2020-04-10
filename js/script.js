@@ -12,7 +12,7 @@ const gemGameApp = {
   currentValue: 0,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 3,
+  numberOfGems: 4,
   weightDifficulty: 2,
   valueDifficulty: 2,
   score: 0,
@@ -263,7 +263,7 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
 
 //function to update the capacity
 gemGameApp.updateCapacity = () => {
-    $('.capacity').text(` Max Capacity: ${gemGameApp.maxCapacity}KG` );
+    $('.capacity').text(` Capacity: ${gemGameApp.maxCapacity}KG` );
     console.log(gemGameApp.maxCapacity);
 }
 
@@ -289,13 +289,6 @@ gemGameApp.updateDifficulty = () => {
 gemGameApp.checkTimer = () => {
     let endTimer = setInterval(() => {
                 if (gemGameApp.timer.totalSeconds == 0) {
-                    // alert("GAMEOVER");
-                    // Swal.fire({
-                    //   title: "Error!",
-                    //   text: "Do you want to continue",
-                    //   icon: "error",
-                    //   confirmButtonText: "Cool",
-                    // });
                     clearInterval(endTimer);
                     gemGameApp.timer.pause();
                 }

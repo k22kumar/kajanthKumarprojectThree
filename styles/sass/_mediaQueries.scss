@@ -1,4 +1,4 @@
-@media (max-width: 600px){
+@media (max-width: 450px){
     .modalContent {
         width: 260px;
         .closeModal {
@@ -7,5 +7,12 @@
     .modalOption, .modalTitle {
         font-size: 1.5rem;
     }
+    }
+
+    .playArea {
+        width: 90%;
+        .playerInfo, .stealInfo {
+            font-size: 1.6rem;
+        }
     }
 }
