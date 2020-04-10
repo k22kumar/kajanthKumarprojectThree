@@ -492,7 +492,7 @@ button {
 }
 
 .modal .modalContent {
-  width: 260px;
+  width: 460px;
   border-radius: 8px;
   position: relative;
   display: -webkit-box;
@@ -513,7 +513,7 @@ button {
 }
 
 .modal .modalContent .closeModal, .modal .modalContent .modalOption, .modal .modalContent .modalTitle {
-  font-size: 1.3rem;
+  font-size: 2.3rem;
   color: white;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -525,7 +525,7 @@ button {
   right: 10px;
   top: 10px;
   padding: 5px;
-  font-size: 1.8rem;
+  font-size: 2.8rem;
 }
 
 .modal .modalContent .modalOption, .modal .modalContent .modalTitle {
@@ -769,6 +769,11 @@ main {
 @media (max-width: 600px) {
   .modalContent {
     width: 260px;
-    font-size: 1.4rem;
+  }
+  .modalContent .closeModal {
+    font-size: 1.8rem;
+  }
+  .modalContent .modalOption, .modalContent .modalTitle {
+    font-size: 1.5rem;
   }
 }
