@@ -17,13 +17,13 @@ const gemGameApp = {
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
-    totalSeconds: 60,
+    totalSeconds: 15,
     start: function () {
       let timer = this;
       //create an interval as a property and count DOWN from 60
       this.interval = setInterval(function () {
         timer.totalSeconds -= 1;
-        $(".time").text(parseInt(timer.totalSeconds % 60));
+        $(".time").text(parseInt(timer.totalSeconds));
       }, 1000);
     },
 
@@ -53,6 +53,7 @@ gemGameApp.init = function () {
     gemGameApp.hambMenu();
     gemGameApp.restartGame();
     gemGameApp.closeButton();
+    gemGameApp.instructionsButton();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -140,7 +141,7 @@ gemGameApp.knapsackAlgorithm = (gemArray) => {
         }
     }   
     gemGameApp.maxValue = dpMatrix[rows-1][cols-1];
-    console.log("max value is:" + gemGameApp.maxValue);
+    console.log("knapsack value is:" + gemGameApp.maxValue);
 }
 
 //debug function to print array to conosle 
@@ -209,10 +210,10 @@ gemGameApp.checkAnswer = () => {
           totalWeight += parseInt($(this).find(".weight p").text().slice(0, -2));
           totalValue += parseInt($(this).find(".value p").text().slice(1));
         });
+        console.log(totalValue + " " + gemGameApp.maxValue)
         totalValue === gemGameApp.maxValue
           ? gemGameApp.sucessHandler(totalValue)
           : gemGameApp.failureHandler();
-        console.log("value " + totalValue + " weight " + totalWeight);
     })
 }
 
@@ -231,14 +232,13 @@ gemGameApp.sucessHandler = (newScore) => {
 
 //this function handles the fail state of the game
 gemGameApp.failureHandler = () => {
+    gemGameApp.timer.pause();
     gemGameApp.resetButtons();
-    Swal.fire({
-      title: "Game Over!",
-      text: "Restart?",
-      icon: "error",
-      confirmButtonText: "Cool",
-    });
-    // alert('max value should have added up to: ' + gemGameApp.maxValue);
+    $('.modalTitle').text('Game Over!');
+    $('.finalScore').text(`Final Score: Level ${gemGameApp.difficulty} with ${gemGameApp.score}$`);
+    $('.finalScore').removeClass('hide');
+    gemGameApp.openModal();
+    console.log("fail");
 }
 
 gemGameApp.resetButtons = () => {
@@ -283,7 +283,7 @@ gemGameApp.checkTimer = () => {
     let endTimer = setInterval(() => {
                 if (gemGameApp.timer.totalSeconds == 0) {
                     clearInterval(endTimer);
-                    gemGameApp.timer.pause();
+                    gemGameApp.failureHandler();
                 }
                 },500);
 }
@@ -304,6 +304,7 @@ gemGameApp.closeModal = () => {
 gemGameApp.hambMenu = () => {
   $(".hambMenu").on("click", function () {
     gemGameApp.openModal();
+    $('.closeModal').addClass('hide');
   });
 };
 
@@ -314,21 +315,58 @@ gemGameApp.openModal = () => {
 
 gemGameApp.restartGame = () => {
     $('#restart').on('click', function() {
+        gemGameApp.closeModal();
         gemGameApp.resetGame();
+        $(".closeModal").removeClass("hide");
+        console.log("restart");
     })
 }
 
+//this function will reset the game from scratch
 gemGameApp.resetGame = () => {
-gemGameApp.maxCapacity = 0;
-gemGameApp.maxValue = 0;
-gemGameApp.difficulty = 1;
-gemGameApp.numberOfGems = 3;
-gemGameApp.weightDifficulty = 2;
-gemGameApp.valueDifficulty = 2;
-gemGameApp.score = 0;
-gemGameApp.timer.pause();
-gemGameApp.timer.totalSeconds=0
-gemGameApp.timer.resume();
+    gemGameApp.maxCapacity = 0;
+    gemGameApp.maxValue = 0;
+    gemGameApp.difficulty = 1;
+    gemGameApp.numberOfGems = 3;
+    gemGameApp.weightDifficulty = 2;
+    gemGameApp.valueDifficulty = 2;
+    gemGameApp.score = 0;
+    gemGameApp.createGemsArray();
+    gemGameApp.createGems();
+    gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
+    gemGameApp.updateCapacity();
+    gemGameApp.timer.pause();
+    $(".time").text(parseInt(15));
+    gemGameApp.timer.totalSeconds = 15;
+    gemGameApp.timer.start();
+    gemGameApp.checkTimer();
+    gemGameApp.gemChoice();
+    gemGameApp.checkAnswer();
+    $(".finalScore").addClass("hide");
+    $(".modalTitle").text("Gem Heist!");
+}
+
+//function that handles when player CLICKS on instructions
+gemGameApp.instructionsButton = () => {
+    $('#instructions').on('click', function() {
+        gemGameApp.showInstructions();
+        console.log('instructions');
+    })
+}
+
+//this function will show the instructions to player
+gemGameApp.showInstructions = () => {
+    $(".instructionsText").removeClass(hide);
+    $('.instructions').addClass('hide');
+    $(".instructions").addClass("hide");
+    $(".instructions").addClass("hide");
+}
+
+//function to play game IF started from the instructions menu
+gemGameApp.playGame = () => {
+    $('#playGameMenu').on('click', function () {
+        console.log('playgame');
+    })
 }
 
 //document ready
