@@ -1,3 +1,19 @@
 .toUpper {
     text-transform: uppercase;
 }
+
+button {
+    padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none
+}
+
+$bgBlack: #0e0e0e;
+$primaryBlue:#042337;
+$accent: #99622b;
+$pinkGem: #caa9ca;
+$selection: #3d3d3d;
+$selected: lighten($selection, 5%);

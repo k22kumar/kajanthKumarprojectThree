@@ -10,25 +10,31 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-    <div class="modal hide">
+    <div class="modal">
         <div class="modalContent">
             <button class="closeModal"><i class="fas fa-times"></i></button>
             <p class="modalTitle">Menu</p>
-            <button class="modalOption">Restart</button>
+            <button class="modalOption">Restart <i class="fas fa-redo"></i></button>
             <button class="modalOption">Instructions</button>
             <button class="modalOption">Title Page</button>
         </div>
     </div>
     <header class="">
         <div class="background">
-            <h1 class="mainTitle toUpper">gem heist</h1>
+            <div class="mainTitle">
+                <h1 class="toUpper">gem heist</h1>
+            </div>
             <img src="./assets/catwoman.jpg"
                 alt="Female anti-hero Cat Woman from DC Comics wearing black skin tight outfit hanging upside down from ceiling reaching for a gleaming pink gem.">
             <button href="#main" class="playGame toUpper">play!</button>
+            <a class="artist toUpper" href="https://sarinsfiles.blogspot.com/2013/09/catwoman-making-of-base-card.html">artist credit</a>
         </div>
         
-        <!-- <a href="https://sarinsfiles.blogspot.com/2013/09/catwoman-making-of-base-card.html">artist credit</a> -->
     </header>
+
+
+    <!-- <img src="./assets/catWomanIcon.png" alt="symbol depicting woman wearing cat mask"> -->
+
 
     <main id="#main" class="wrapper">
         <section class="gameContainer">
@@ -46,7 +52,7 @@
                     <li>
                         <nav class="catNav">
                             <button class="catSymbol">
-                                <img src="./assets/catWomanIcon.png" alt="">
+                                <i class="fas fa-bars"></i>
                             </button>
                         </nav>
                     </li>
