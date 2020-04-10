@@ -8,11 +8,9 @@ const gemGameApp = {
 
   //The carrying capacity of the character (can only carry 5 KG)
   maxCapacity: 5,
-  currentCapacity: 0,
-  currentValue: 0,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 4,
+  numberOfGems: 3,
   weightDifficulty: 2,
   valueDifficulty: 2,
   score: 0,
@@ -52,14 +50,9 @@ gemGameApp.init = function () {
     gemGameApp.checkTimer();
     gemGameApp.gemChoice();
     gemGameApp.checkAnswer();
-    gemGameApp.openMenu();
-    gemGameApp.closeModal();
-}
-
-gemGameApp.openMenu = () => {
-    $('.hambMenu').on('click', function() {
-        $('.modal').removeClass('hide');
-    })
+    gemGameApp.hambMenu();
+    gemGameApp.restartGame();
+    gemGameApp.closeButton();
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -295,12 +288,47 @@ gemGameApp.checkTimer = () => {
                 },500);
 }
 
-//function to close modal
+//function to close modal UPON CLICK
+gemGameApp.closeButton = () => {
+    $(".closeModal").on("click", function () {
+      gemGameApp.closeModal();
+    });
+}
+
+//function to CLOSE the modal
 gemGameApp.closeModal = () => {
-    $('.closeModal').on('click', function () {
         $('.modal').addClass('hide');
-        console.log($('.modal'));
+}
+
+//function to SHOW the modal WHEN HAMBMENU IS CLICKED
+gemGameApp.hambMenu = () => {
+  $(".hambMenu").on("click", function () {
+    gemGameApp.openModal();
+  });
+};
+
+//function to SHOW the modal
+gemGameApp.openModal = () => {
+    $(".modal").removeClass("hide");
+}
+
+gemGameApp.restartGame = () => {
+    $('#restart').on('click', function() {
+        gemGameApp.resetGame();
     })
+}
+
+gemGameApp.resetGame = () => {
+gemGameApp.maxCapacity = 0;
+gemGameApp.maxValue = 0;
+gemGameApp.difficulty = 1;
+gemGameApp.numberOfGems = 3;
+gemGameApp.weightDifficulty = 2;
+gemGameApp.valueDifficulty = 2;
+gemGameApp.score = 0;
+gemGameApp.timer.pause();
+gemGameApp.timer.totalSeconds=0
+gemGameApp.timer.resume();
 }
 
 //document ready

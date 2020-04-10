@@ -767,6 +767,32 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
+.stealInfo .boost {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.stealInfo .boost .stash1, .stealInfo .boost .stash2, .stealInfo .boost .stash3 {
+  width: calc(100% / 3);
+}
+
+.stealInfo .boost .stash1 {
+  background-color: red;
+}
+
+.stealInfo .boost .stash2 {
+  background-color: blue;
+}
+
+.stealInfo .boost .stash3 {
+  background-color: yellow;
+}
+
 .stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover, .stealInfo .boost:hover, .stealInfo .boost:focus, .stealInfo .boost:active {
   background-color: #caa9ca;
 }

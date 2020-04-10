@@ -131,6 +131,27 @@ main {
     transition: all 0.2s ease-in-out;
     }
 
+    .boost {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .stash1, .stash2, .stash3 {
+            width: calc(100% / 3);
+        }
+        .boostText {
+            
+        }
+        .stash1 {
+            background-color: red;
+        }
+        .stash2 {
+            background-color: blue;
+        }
+        .stash3 {
+            background-color: yellow;
+        }
+    }
+
 
     .submit:hover, .submit:active, .submit:hover , .boost:hover, .boost:focus, .boost:active{
         background-color: $pinkGem;
