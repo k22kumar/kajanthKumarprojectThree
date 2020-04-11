@@ -252,8 +252,7 @@ gemGameApp.checkAnswer = () => {
 
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
-    $("#jewels")[0].play();
-    $("#jewels")[0].play();
+    gemGameApp.playSound('#jewels');
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
     gemGameApp.updateCapacity();
