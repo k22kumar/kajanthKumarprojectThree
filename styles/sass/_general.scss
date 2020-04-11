@@ -1,3 +1,11 @@
+
+$bgBlack: #0e0e0e;
+$primaryBlue:#042337;
+$accent: #99622b;
+$pinkGem: #caa9ca;
+$selection: #3d3d3d;
+$selected: lighten($selection, 5%);
+
 .toUpper {
     text-transform: uppercase;
 }
@@ -11,9 +19,6 @@ button {
   background: none
 }
 
-$bgBlack: #0e0e0e;
-$primaryBlue:#042337;
-$accent: #99622b;
-$pinkGem: #caa9ca;
-$selection: #3d3d3d;
-$selected: lighten($selection, 5%);
+body {
+    background-color: $bgBlack;
+}

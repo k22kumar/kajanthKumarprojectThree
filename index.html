@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-    <div class="modal">
+    <div class="modal initialLoad hide">
         <div class="modalContent">
-            <button class="closeModal"><i class="fas fa-times"></i></button>
             <p class="modalTitle">Gem Heist!</p>
             <p class="finalScore hide"></p>
             <button class="modalOption" id="restart">Restart <i class="fas fa-redo"></i></button>
@@ -41,7 +40,7 @@
     <!-- <img src="./assets/catWomanIcon.png" alt="symbol depicting woman wearing cat mask"> -->
 
 
-    <main id="#main" class="wrapper">
+    <main id="#main" class="wrapper hide">
         <section class="gameContainer">
             <div class="playArea">
                 <ul class="playerInfo">
@@ -92,7 +91,6 @@
 
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

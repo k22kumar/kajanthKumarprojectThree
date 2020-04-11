@@ -44,7 +44,10 @@ const gemGameApp = {
 gemGameApp.init = function () {
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
-    gemGameApp.timer.start();
+
+    // gemGameApp.timer.start();
+
+
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.updateCapacity();
     gemGameApp.checkTimer();
@@ -52,9 +55,19 @@ gemGameApp.init = function () {
     gemGameApp.checkAnswer();
     gemGameApp.hambMenu();
     gemGameApp.restartGame();
-    gemGameApp.closeButton();
     gemGameApp.instructionsButton();
-    gemGameApp.playGame();
+    gemGameApp.playGameMenu();
+    gemGameApp.startGame();
+}
+
+//this function is for the very first play button on the title screen to bring players to the game
+gemGameApp.startGame = () => {
+ $('.playGame').on('click', function () {
+     $("header").fadeOut();
+    gemGameApp.showInstructions();
+    $('.modal').removeClass('hide');
+     $("main").fadeIn(1000);
+ })
 }
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
@@ -233,6 +246,8 @@ gemGameApp.failureHandler = () => {
     $('.modalTitle').text('Game Over!');
     $('.finalScore').text(`Final Score: Level ${gemGameApp.difficulty} with ${gemGameApp.score}$`);
     $('.finalScore').removeClass('hide');
+    $("#playGameMenu").addClass("hide");
+    $('#instructions').removeClass('hide');
     gemGameApp.openModal();
 }
 
@@ -280,13 +295,6 @@ gemGameApp.checkTimer = () => {
                     gemGameApp.failureHandler();
                 }
                 },500);
-}
-
-//function to close modal UPON CLICK
-gemGameApp.closeButton = () => {
-    $(".closeModal").on("click", function () {
-      gemGameApp.closeModal();
-    });
 }
 
 //function to CLOSE the modal
@@ -359,13 +367,13 @@ gemGameApp.showInstructions = () => {
 }
 
 //function to play game IF started from the instructions menu
-gemGameApp.playGame = () => {
+gemGameApp.playGameMenu = () => {
     $('#playGameMenu').on('click', function () {
-        console.log("playgame1");
         gemGameApp.closeModal();
+        $('.instructionsText').addClass('hide');
+        $('.finalScore').addClass('hide');
+        $("#restart").removeClass("hide");
         gemGameApp.resetGame();
-        $('#restart').RemoveClass('hide');
-        console.log('playgame');
     })
 }
 

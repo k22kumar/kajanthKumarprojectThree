@@ -467,6 +467,10 @@ button {
   background: none;
 }
 
+body {
+  background-color: #0e0e0e;
+}
+
 .modal {
   padding-bottom: 100px;
   position: fixed;
@@ -512,7 +516,7 @@ button {
   padding: 40px 20px;
 }
 
-.modal .modalContent .closeModal, .modal .modalContent .modalOption, .modal .modalContent .modalTitle, .modal .modalContent .finalScore, .modal .modalContent .instructionsText {
+.modal .modalContent .modalOption, .modal .modalContent .modalTitle, .modal .modalContent .finalScore, .modal .modalContent .instructionsText {
   font-size: 2.3rem;
   color: white;
   -webkit-transition: all 0.3s ease-in-out;
@@ -526,19 +530,11 @@ button {
   line-height: 1.3;
 }
 
-.modal .modalContent .closeModal {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  padding: 5px;
-  font-size: 2.8rem;
-}
-
 .modal .modalContent .modalOption, .modal .modalContent .modalTitle {
   font-family: 'Poller One', cursive;
 }
 
-.modal .modalContent .modalOption:hover, .modal .modalContent .modalOption:active, .modal .modalContent .modalOption:focus, .modal .modalContent .closeModal:hover, .modal .modalContent .closeModal:active, .modal .modalContent .closeModal:focus {
+.modal .modalContent .modalOption:hover, .modal .modalContent .modalOption:active, .modal .modalContent .modalOption:focus {
   color: #99622b;
 }
 
