@@ -336,6 +336,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.weightDifficulty = 2;
     gemGameApp.valueDifficulty = 2;
     gemGameApp.score = 0;
+    gemGameApp.updateScore();
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
     gemGameApp.timer.pause();
