@@ -16,7 +16,7 @@ const gemGameApp = {
   score: 0,
 
   //volume of Game
-  volume: 0.15,
+  volume: 0.35,
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
