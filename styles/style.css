@@ -809,6 +809,29 @@ main {
   text-align: center;
 }
 
+.stealInfo input[type="checkbox"] {
+  /* This is much better than display none*/
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.stealInfo .sound {
+  -webkit-transition: all .6s;
+  transition: all .6s;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.stealInfo .sound:active, .stealInfo .sound:hover, .stealInfo .sound:focus {
+  background-color: black;
+  color: white;
+  scale: 1.1;
+}
+
 .stealInfo .submit {
   font-family: 'Poller One', cursive;
   color: white;

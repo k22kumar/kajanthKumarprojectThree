@@ -128,6 +128,29 @@ main {
         margin: 0 10px;
         text-align: center;
     }
+
+    input[type="checkbox"] {
+            /* This is much better than display none*/
+            opacity: 0;
+            position: fixed;
+            width: 0;
+        }
+
+    .sound {
+        transition: all .6s;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        padding: 10px;
+        font-size: 2rem;
+    }
+
+    .sound:active, .sound:hover, .sound:focus  {
+        background-color: black;
+        color: white;
+        scale: 1.1;
+    }
+
     .submit {
     font-family: 'Poller One', cursive;
     color: white;

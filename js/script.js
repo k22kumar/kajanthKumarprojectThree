@@ -15,6 +15,9 @@ const gemGameApp = {
   valueDifficulty: 2,
   score: 0,
 
+  //volume of Game
+  volume: 0.35,
+
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
     totalSeconds: 60,
@@ -44,10 +47,6 @@ const gemGameApp = {
 gemGameApp.init = function () {
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
-
-    // gemGameApp.timer.start();
-
-
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.updateCapacity();
     gemGameApp.checkTimer();
@@ -58,6 +57,7 @@ gemGameApp.init = function () {
     gemGameApp.instructionsButton();
     gemGameApp.playGameMenu();
     gemGameApp.startGame();
+    gemGameApp.controlSound();
 }
 
 //this function is for the very first play button on the title screen to bring players to the game
@@ -69,6 +69,28 @@ gemGameApp.startGame = () => {
     $("main").removeClass("hide");
  })
 }
+
+
+// $("#intro")[0].volume = gemAppGame.volume;
+
+
+//function to control volume click
+gemGameApp.controlSound = function() {
+  $(".soundInput").on("click", function() {
+    $('.volUp').toggleClass('hide');
+    $('.volOff').toggleClass('hide');
+    $('.volOff').hasClass('hide') ?
+    gemGameApp.volume = 0.35:
+    gemGameApp.volume = 0;
+  });
+}
+
+//function that handles playing sound 
+gemGameApp.playSound = (soundId) => {
+    $(soundId)[0].volume = 0.35;
+    $(soundId)[0].play();
+}
+
 
 //randomNumberGenerator, this generates a random number between two values given values with a starting default of 0
 //I copied part of the code for selecting a random value from an inclusive set from this link: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
@@ -229,6 +251,8 @@ gemGameApp.checkAnswer = () => {
 
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
+    $("#jewels")[0].play();
+    $("#jewels")[0].play();f
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
     gemGameApp.updateCapacity();
@@ -305,8 +329,9 @@ gemGameApp.closeModal = () => {
 //function to SHOW the modal WHEN HAMBMENU IS CLICKED
 gemGameApp.hambMenu = () => {
   $(".hambMenu").on("click", function () {
+    $("#instructions").removeClass("hide");
+    $("#playGameMenu").addClass("hide");
     gemGameApp.openModal();
-    $('.closeModal').addClass('hide');
     gemGameApp.timer.pause();
   });
 };
@@ -320,7 +345,6 @@ gemGameApp.restartGame = () => {
     $('#restart').on('click', function() {
         gemGameApp.closeModal();
         gemGameApp.resetGame();
-        $(".closeModal").removeClass("hide");
         console.log("restart");
     })
 }
