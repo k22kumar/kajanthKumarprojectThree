@@ -17,7 +17,7 @@ const gemGameApp = {
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
-    totalSeconds: 15,
+    totalSeconds: 60,
     start: function () {
       let timer = this;
       //create an interval as a property and count DOWN from 60
@@ -62,11 +62,12 @@ gemGameApp.init = function () {
 
 //this function is for the very first play button on the title screen to bring players to the game
 gemGameApp.startGame = () => {
- $('.playGame').on('click', function () {
-     $("header").fadeOut();
+ $('.playGame').on('click', function () {   
+    $("header").addClass("hide")
     gemGameApp.showInstructions();
-    $('.modal').removeClass('hide');
-     $("main").fadeIn(1000);
+    $(".modal").removeClass("hide");
+    $("main").removeClass("hide");
+    
  })
 }
 
@@ -338,8 +339,8 @@ gemGameApp.resetGame = () => {
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
     gemGameApp.timer.pause();
-    $(".time").text(parseInt(15));
-    gemGameApp.timer.totalSeconds = 15;
+    $(".time").text(parseInt(60));
+    gemGameApp.timer.totalSeconds = 60;
     gemGameApp.timer.start();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.updateCapacity();

@@ -472,6 +472,8 @@ body {
 }
 
 .modal {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
   padding-bottom: 100px;
   position: fixed;
   z-index: 1;
@@ -536,6 +538,54 @@ body {
 
 .modal .modalContent .modalOption:hover, .modal .modalContent .modalOption:active, .modal .modalContent .modalOption:focus {
   color: #99622b;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.fadeOut {
+  -webkit-animation: fadeOut 2s ease-in-out;
+          animation: fadeOut 2s ease-in-out;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 3s ease-in-out;
+          animation: fadeIn 3s ease-in-out;
 }
 
 header {
