@@ -331,6 +331,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.maxCapacity = 5;
     gemGameApp.maxValue = 0;
     gemGameApp.difficulty = 1;
+    $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
     gemGameApp.numberOfGems = 3;
     gemGameApp.weightDifficulty = 2;
     gemGameApp.valueDifficulty = 2;
