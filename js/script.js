@@ -49,7 +49,6 @@ const gemGameApp = {
 
 //gemGameApp methods
 gemGameApp.init = function () {
-    // $(".volOff").addClass("hide");
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
@@ -62,6 +61,7 @@ gemGameApp.init = function () {
     gemGameApp.playGameMenu();
     gemGameApp.startGame();
     gemGameApp.controlSound();
+    // gemGameApp.checkTimer();
 }
 
 //this function is for the very first play button on the title screen to bring players to the game
@@ -81,19 +81,26 @@ gemGameApp.startGame = () => {
 
 //function to control volume click
 gemGameApp.controlSound = function() {
-  $(".soundInput").on("click", function() {
-    $(".volUp").toggleClass("hide");
-    $(".volOff").toggleClass("hide");
-    $('.volOff').hasClass('hide') ?
-    gemGameApp.volume = 0.35:
-    gemGameApp.volume = 0;
-  });
-}
+    $(".soundInput").on("click", function() {
+        $(".volUp").toggleClass("hide");
+        $(".volOff").toggleClass("hide");
+        $('.volOff').hasClass('hide') ?
+        gemGameApp.volume = 0.15 :
+        gemGameApp.volume = 0;
+        for(i=1; i<=4; i++) {
+            musicID = `#music${i}`;
+            $(musicID)[0].volume = gemAppGame.volume;
+        }
+    });
+    }
+
 
 //function that handles playing sound 
 gemGameApp.playSound = (soundId) => {
     if(gemGameApp.volume>0){
-        $(soundId)[0].play();
+        $(soundId)[0].volume = gemAppGame.volume;
+    } else {
+        
     }
 
 
@@ -329,16 +336,16 @@ gemGameApp.checkTimer = () => {
                     gemGameApp.failureHandler();
                 }
                 
-                if (gemGameApp.timer.totalSeconds > 70 && !gemGameApp.music1Playing) {
+                if (gemGameApp.timer.totalSeconds > 70 ) {
                     gemGameApp.switchOffMusicExcept(1);
                   gemGameApp.playSound("#music1");
-                } else if (gemGameApp.timer.totalSeconds > 50 && !gemGameApp.music2Playing) {
+                } else if (gemGameApp.timer.totalSeconds > 50 ) {
                     gemGameApp.switchOffMusicExcept(2);
                   gemGameApp.playSound("#music2");
-                } else if (gemGameApp.timer.totalSeconds > 20 && !gemGameApp.music3Playing) {
+                } else if (gemGameApp.timer.totalSeconds > 20 ) {
                   gemGameApp.switchOffMusicExcept(3);
                     gemGameApp.playSound("#music3");
-                } else if (gemGameApp.timer.totalSeconds >= 0 && !gemGameApp.music4Playing) {
+                } else if (gemGameApp.timer.totalSeconds >= 0 ) {
                     gemGameApp.switchOffMusicExcept(4);
                   gemGameApp.playSound("#music4");
                 } 
@@ -410,7 +417,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.maxValue = 0;
     gemGameApp.difficulty = 1;
     $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-    gemGameApp.numberOfGems = 3;
+    gemGameApp.numberOfGems = 12;
     gemGameApp.weightDifficulty = 2;
     gemGameApp.valueDifficulty = 2;
     gemGameApp.score = 0;
