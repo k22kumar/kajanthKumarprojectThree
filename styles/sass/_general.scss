@@ -4,7 +4,7 @@ $primaryBlue:#042337;
 $accent: #99622b;
 $pinkGem: #caa9ca;
 $selection: #3d3d3d;
-$selected: lighten($selection, 5%);
+$selected: rgb(81, 107, 81);
 
 .toUpper {
     text-transform: uppercase;

@@ -67,7 +67,6 @@ gemGameApp.startGame = () => {
     gemGameApp.showInstructions();
     $(".modal").removeClass("hide");
     $("main").removeClass("hide");
-    
  })
 }
 
