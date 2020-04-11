@@ -775,6 +775,10 @@ main {
   font-size: 1.6rem;
 }
 
+.gemButton .gemInfo {
+  width: 92.5px;
+}
+
 .gemButton .gem {
   padding: 0;
   margin: auto;

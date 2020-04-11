@@ -121,7 +121,8 @@ gemGameApp.createGems = function () {
     const htmlToAppend = `
         <button id="gem${i}" class="gemButton hide">
                         <div class="gem">
-                            <img class = "catSymbol" src="./assets/catWomanIcon.png" alt="cat woman icon depicting woman wearing cat mask ">
+                            <i class="fas fa-gem"></i>
+                            <img class = "catSymbol hide" src="./assets/catWomanIcon.png" alt="cat woman icon depicting woman wearing cat mask ">
                         </div>
                         <ul class="gemInfo">
                             <li class="weight">
