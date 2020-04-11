@@ -14,13 +14,15 @@ const gemGameApp = {
   weightDifficulty: 2,
   valueDifficulty: 2,
   score: 0,
+  //this represents the stash used for boosts in the game can only have 3 items init
+  stash: [],
 
   //volume of Game
-  volume: 0.1,
+  volume: 0,
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
-    totalSeconds: 60,
+    totalSeconds: 600,
     start: function () {
       let timer = this;
       //create an interval as a property and count DOWN from 60
@@ -74,7 +76,7 @@ gemGameApp.controlSound = function () {
     $(".volUp").toggleClass("hide");
     $(".volOff").toggleClass("hide");
     $(".volOff").hasClass("hide")
-      ? (gemGameApp.volume = 0.2)
+      ? (gemGameApp.volume = 0) //make 0.15
       : (gemGameApp.volume = 0);
     $('#music2')[0].volume = gemGameApp.volume;
   });
@@ -119,7 +121,7 @@ gemGameApp.createGems = function () {
     const htmlToAppend = `
         <button id="gem${i}" class="gemButton hide">
                         <div class="gem">
-                            <i class="fas fa-gem"></i>
+                            <img class = "catSymbol" src="./assets/catWomanIcon.png" alt="cat woman icon depicting woman wearing cat mask ">
                         </div>
                         <ul class="gemInfo">
                             <li class="weight">
@@ -223,6 +225,9 @@ gemGameApp.createMatrix = (rows, cols) => {
 gemGameApp.gemChoice = function () {
   $(".gemButton").on("click", function () {
     $(this).toggleClass("chosenGem");
+
+
+
   });
 };
 
@@ -351,7 +356,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 3;
+  gemGameApp.numberOfGems = 12;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
   gemGameApp.score = 0;
@@ -360,7 +365,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 60;
+  gemGameApp.timer.totalSeconds = 600;
 
   
   gemGameApp.checkTimer();
@@ -399,6 +404,8 @@ gemGameApp.playGameMenu = () => {
     gemGameApp.timer.start();
   });
 };
+
+//
 
 //document ready
 $(document).ready(function () {

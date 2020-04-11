@@ -741,8 +741,8 @@ main {
 }
 
 .gemButton {
-  width: 85px;
-  height: 85px;
+  width: 100px;
+  height: 100px;
   padding: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -770,15 +770,20 @@ main {
   text-align: center;
   padding: 5px;
   color: black;
-  width: calc(50%);
+  width: 50%;
   font-family: 'Lexend Deca', sans-serif;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
 }
 
 .gemButton .gem {
   padding: 0;
   margin: auto;
   font-size: 3.3rem;
+  height: 61px;
+}
+
+.gemButton .gem img {
+  max-height: 100%;
 }
 
 .gemButton .value {
