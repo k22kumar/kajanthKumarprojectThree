@@ -817,6 +817,17 @@ main {
 }
 
 .stealInfo .sound {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 44px;
+  height: 44px;
   -webkit-transition: all .6s;
   transition: all .6s;
   color: black;
@@ -824,6 +835,10 @@ main {
   border-radius: 50%;
   padding: 10px;
   font-size: 2rem;
+}
+
+.stealInfo .sound .volOff {
+  margin-left: -13px;
 }
 
 .stealInfo .sound:active, .stealInfo .sound:hover, .stealInfo .sound:focus {

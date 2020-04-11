@@ -78,8 +78,8 @@ gemGameApp.startGame = () => {
 //function to control volume click
 gemGameApp.controlSound = function() {
   $(".soundInput").on("click", function() {
-    $('.volUp').toggleClass('hide');
-    $('.volOff').toggleClass('hide');
+    $(".volUp").toggleClass("hide");
+    $(".volOff").toggleClass("hide");
     $('.volOff').hasClass('hide') ?
     gemGameApp.volume = 0.35:
     gemGameApp.volume = 0;
@@ -365,7 +365,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.createGems();
     gemGameApp.timer.pause();
     $(".time").text(parseInt(60));
-    gemGameApp.timer.totalSeconds = 60;
+    gemGameApp.timer.totalSeconds = 600;
     gemGameApp.timer.start();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.updateCapacity();
