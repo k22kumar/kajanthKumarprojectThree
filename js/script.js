@@ -17,6 +17,10 @@ const gemGameApp = {
 
   //volume of Game
   volume: 0.35,
+  music1Playing: false,
+  music2Playing: false,
+  music3Playing: false,
+  music4Playing: false,
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
@@ -37,7 +41,7 @@ const gemGameApp = {
     },
 
     resume: function () {
-        //if the interval property has been deleted, create a new one ie restart
+      //if the interval property has been deleted, create a new one ie restart
       if (!this.interval) this.start();
     },
   },
@@ -88,8 +92,13 @@ gemGameApp.controlSound = function() {
 
 //function that handles playing sound 
 gemGameApp.playSound = (soundId) => {
-    $(soundId)[0].volume = 0.35;
-    $(soundId)[0].play();
+    if(gemGameApp.volume>0){
+        $(soundId)[0].play();
+    }
+
+
+    // $(soundId)[0].volume = gemGameApp.volume;
+
 }
 
 
@@ -314,11 +323,37 @@ gemGameApp.updateDifficulty = () => {
 //this function periodicly checks the  "global" timer and when it reaches 0 ends the game
 gemGameApp.checkTimer = () => {
     let endTimer = setInterval(() => {
+
                 if (gemGameApp.timer.totalSeconds == 0) {
                     clearInterval(endTimer);
                     gemGameApp.failureHandler();
                 }
+                if (gemGameApp.timer.totalSeconds > 70 && !gemGameApp.music1Playing) {
+                    gemGameApp.switchOffMusicExcept(1);
+                  gemGameApp.playSound("#music1");
+                } else if (gemGameApp.timer.totalSeconds > 50 && !gemGameApp.music1Playing) {
+                    gemGameApp.switchOffMusicExcept(1);
+                  gemGameApp.playSound("#music2");
+                } else if (gemGameApp.timer.totalSeconds > 20 && !gemGameApp.music1Playing) {
+                  gemGameApp.switchOffMusicExcept(1);
+                    gemGameApp.playSound("#music3");
+                } else if (gemGameApp.timer.totalSeconds >= 0 && !gemGameApp.music1Playing) {
+                    gemGameApp.switchOffMusicExcept(1);
+                    gemGameApp.playSound("#music4");
+                }
+
                 },500);
+}
+
+//function to make sure only one music is being played at a time, this is because multiple checks are done on the clock
+gemGameApp.switchOffMusicExcept(musicNumber){
+    let musicProperty;
+    for(i=1; i<=4; i++){
+        if(i!=musicNumber){
+        musicProperty = `music${i}Playing`
+        gemGameApp[musicProperty] = false 
+        }
+    }
 }
 
 //function to CLOSE the modal
@@ -351,6 +386,11 @@ gemGameApp.restartGame = () => {
 
 //this function will reset the game from scratch
 gemGameApp.resetGame = () => {
+    gemGameApp.music1Playing =false;
+    gemGameApp.music2Playing = false;
+    gemGameApp.music3Playing = false;
+    gemGameApp.music4Playing = false;
+
     gemGameApp.gemsArray = [];
     gemGameApp.maxCapacity = 5;
     gemGameApp.maxValue = 0;
@@ -365,7 +405,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.createGems();
     gemGameApp.timer.pause();
     $(".time").text(parseInt(60));
-    gemGameApp.timer.totalSeconds = 600;
+    gemGameApp.timer.totalSeconds = 60;
     gemGameApp.timer.start();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
     gemGameApp.updateCapacity();
