@@ -741,8 +741,8 @@ main {
 }
 
 .gemButton {
-  width: 100px;
-  height: 100px;
+  width: 92.5px;
+  height: 92.5px;
   padding: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -772,7 +772,7 @@ main {
   color: black;
   width: 50%;
   font-family: 'Lexend Deca', sans-serif;
-  font-size: 2.1rem;
+  font-size: 1.6rem;
 }
 
 .gemButton .gem {
