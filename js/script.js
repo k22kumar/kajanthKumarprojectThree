@@ -17,10 +17,6 @@ const gemGameApp = {
 
   //volume of Game
   volume: 0.15,
-  music1Playing: false,
-  music2Playing: false,
-  music3Playing: false,
-  music4Playing: false,
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
@@ -49,6 +45,7 @@ const gemGameApp = {
 
 //gemGameApp methods
 gemGameApp.init = function () {
+    gemGameApp.playSound("#music4");
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
@@ -85,11 +82,11 @@ gemGameApp.controlSound = function() {
         $(".volUp").toggleClass("hide");
         $(".volOff").toggleClass("hide");
         $('.volOff').hasClass('hide') ?
-        gemGameApp.volume = 0.15 :
+        gemGameApp.volume = 0.35 :
         gemGameApp.volume = 0;
         for(i=1; i<=4; i++) {
             musicID = `#music${i}`;
-            $(musicID)[0].volume = gemAppGame.volume;
+            $(musicID)[0].volume = gemGameApp.volume;
         }
     });
     }
@@ -97,13 +94,9 @@ gemGameApp.controlSound = function() {
 
 //function that handles playing sound 
 gemGameApp.playSound = (soundId) => {
-    if(gemGameApp.volume>0){
-        $(soundId)[0].volume = gemAppGame.volume;
-    } else {
-        
-    }
-
-
+        $(soundId)[0].volume = gemGameApp.volume;
+        $(soundId)[0].play;
+        console.log("i am pllaying: " + soundId);
     // $(soundId)[0].volume = gemGameApp.volume;
 
 }
@@ -252,6 +245,7 @@ gemGameApp.gemChoice = function() {
 //This function will check the answer of users 
 gemGameApp.checkAnswer = () => {
     $('.submit').on('click', function() {
+        gemGameApp.playSound("#music4");
         const $chosenGems = $('.gemButton.chosenGem');
         let totalWeight =0;
         let totalValue =0;
@@ -362,9 +356,8 @@ gemGameApp.switchOffMusicExcept = (musicNumber) => {
         musicID = `#music${i}`;
         gemGameApp.resetSong(i);
         musicProperty = `music${i}Playing`;
-        gemGameApp[musicProperty] = false; 
         }
-        console.log(gemGameApp[musicProperty]);
+        
     }
 }
 
@@ -417,7 +410,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.maxValue = 0;
     gemGameApp.difficulty = 1;
     $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-    gemGameApp.numberOfGems = 12;
+    gemGameApp.numberOfGems = 3;
     gemGameApp.weightDifficulty = 2;
     gemGameApp.valueDifficulty = 2;
     gemGameApp.score = 0;
@@ -430,7 +423,7 @@ gemGameApp.resetGame = () => {
     gemGameApp.resetSong(2);
     gemGameApp.resetSong(3);
     gemGameApp.resetSong(4);
-    gemGameApp.timer.totalSeconds = 60;
+    gemGameApp.timer.totalSeconds = 10;
     
     gemGameApp.timer.start();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
