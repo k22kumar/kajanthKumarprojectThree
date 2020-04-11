@@ -45,6 +45,7 @@ const gemGameApp = {
 
 //gemGameApp methods
 gemGameApp.init = function () {
+    // $(".volOff").addClass("hide");
     gemGameApp.createGemsArray();
     gemGameApp.createGems();
     gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
@@ -252,7 +253,7 @@ gemGameApp.checkAnswer = () => {
 //this function handles the sucess state of the game recieving the score to be added 
 gemGameApp.sucessHandler = (newScore) => {
     $("#jewels")[0].play();
-    $("#jewels")[0].play();f
+    $("#jewels")[0].play();
     gemGameApp.updateScore(newScore);
     gemGameApp.updateDifficulty();
     gemGameApp.updateCapacity();
