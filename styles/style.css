@@ -749,7 +749,6 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   font-size: 1.3rem;
-  color: #caa9ca;
   margin: 5px;
   background-color: #3d3d3d;
   border-radius: 8px;
@@ -797,10 +796,6 @@ main {
 .gemButton .weight {
   background-color: #3d3d3d;
   color: white;
-}
-
-.chosenGem {
-  background-color: #516b51;
 }
 
 .stealInfo {
@@ -868,6 +863,38 @@ main {
 
 .stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover {
   background-color: #caa9ca;
+}
+
+.colour1 {
+  color: #caa9ca;
+}
+
+.colour4chosen {
+  background-color: #774977;
+}
+
+.colour2 {
+  color: #9dbef2;
+}
+
+.colour4chosen {
+  background-color: #1a5bc3;
+}
+
+.colour3 {
+  color: #5bee97;
+}
+
+.colour3chosen {
+  background-color: #0e8840;
+}
+
+.colour4 {
+  color: #f9827e;
+}
+
+.colour4chosen {
+  background-color: #bc0f09;
 }
 
 /* main styles end*/

@@ -13,6 +13,7 @@ const gemGameApp = {
   numberOfGems: 3,
   weightDifficulty: 2,
   valueDifficulty: 2,
+  colourDifficulty: 4,
   score: 0,
   //this represents the stash used for boosts in the game can only have 3 items init
   stash: [],
@@ -119,9 +120,10 @@ gemGameApp.createGems = function () {
   let i = 0;
   // go through the gems array, and create each gem
   gemGameApp.gemsArray.forEach(function (gemObj) {
+    const rngColour = gemGameApp.rng(1, gemGameApp.colourDifficulty);
     const htmlToAppend = `
-        <button id="gem${i}" class="gemButton hide">
-                        <div class="gem">
+        <button id="gem${i}" class="gemButton colour${rngColour} hide">
+                        <div class="gem ">
                             <i class="fas fa-gem"></i>
                             <img class = "catSymbol hide" src="./assets/catWomanIcon.png" alt="cat woman icon depicting woman wearing cat mask ">
                         </div>
@@ -212,10 +214,10 @@ gemGameApp.gemsCompareWeight = (gem1, gem2) => {
 //I had alot of trouble tring to figure out how to create a 2d matrix DYNAMICALLY using what we learned in class
 gemGameApp.createMatrix = (rows, cols) => {
   let matrix = [];
-  for (var i = 0; i < rows; i++) {
+  for (let i = 0; i < rows; i++) {
     matrix.push([]);
     matrix[i].push(new Array(cols));
-    for (var j = 0; j < cols; j++) {
+    for (let j = 0; j < cols; j++) {
       matrix[i][0] = 0;
       matrix[0][j] = 0;
     }
@@ -227,6 +229,10 @@ gemGameApp.createMatrix = (rows, cols) => {
 gemGameApp.gemChoice = function () {
   $(".gemButton").on("click", function () {
     $(this).toggleClass("chosenGem");
+    let colourBG = "";
+    for(let i=1; i<5; i++){
+
+    }
 
     //if it has a mask, remove mask and from the POTENTIAL stash
     if(!($(this).find('.catSymbol').hasClass('hide'))){
@@ -296,6 +302,11 @@ gemGameApp.checkAnswer = () => {
 //this function handles the sucess state of the game recieving the score to be added
 gemGameApp.sucessHandler = (newScore) => {
   gemGameApp.playSound("#jewels");
+
+    if(gemGameApp.stash.length<3){
+        
+    }
+
   gemGameApp.updateScore(newScore);
   gemGameApp.updateDifficulty();
   gemGameApp.updateCapacity();
