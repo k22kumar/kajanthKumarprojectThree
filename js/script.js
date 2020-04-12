@@ -308,16 +308,34 @@ gemGameApp.boostHandler = () => {
   $('.boost').on('click', function() {
       let matches = 0;
       let currentComparison = "";
-      for (let i = 0; i < 1; i++) {
-        //compare each item against one another looking for comparisons
-        currentComparison = gemGameApp.stash[0];
-        for (let j = 1; j < 2; j++) {
-          if (currentComparison === gemGameApp.stash[j]) {
-            matches++;
+      let bonusScore = 0;
+      let bonusSeconds =0;
+
+
+      if (gemGameApp.stash.length === 1) {
+        bonusScore = 20;
+        gemGameApp.updateScore(bonusScore);
+      } else { //handle when stash is 2-3 elements
+    
+        gemGameApp.stash.sort();
+        for (let i = 0; i < gemGameApp.stash.length - 1; i++) {
+          //compare each item against one another looking for comparisons
+          //if only one element than give them 20$
+
+          currentComparison = gemGameApp.stash[i];
+          console.log("current Comparison: " + currentComparison);
+
+          for (let j = i + 1; j < gemGameApp.stash.length; j++) {
+            if (currentComparison === gemGameApp.stash[j]) {
+              console.log("current Comparison: " + gemGameApp.stash[j]);
+              matches++;
+            }
           }
+          console.log("matches: " + matches);
         }
-        console.log("matches: " + matches);
       }
+
+      
 
       //remove styling from all stashes 
       let colourClass = "";
@@ -331,15 +349,19 @@ gemGameApp.boostHandler = () => {
       }
 
       //update score and time
-      const bonusScore = (gemGameApp.stash.length - matches) * 20;
-      console.log("bonusScore: " + bonusScore);
-      gemGameApp.updateScore(bonusScore);
-      const bonusSeconds = matches * 10;
+      if (matches >= gemGameApp.stash.length) {
+       bonusScore = (gemGameApp.stash.length - matches) * 20;
+        console.log("bonusScore: " + bonusScore);
+        gemGameApp.updateScore(bonusScore);
+      }
+       bonusSeconds = matches * 10;
       console.log("bonusSeconds: " + bonusSeconds);
       gemGameApp.timer.totalSeconds += bonusSeconds;
 
       //user cant use boosts more than once per level
       $(".boost").addClass("disabled");
+      //clear the stash
+      gemGameApp.stash = [];
   });
 
 }
@@ -365,7 +387,7 @@ gemGameApp.sucessHandler = (newScore) => {
           }
         }
     }
-  gemGameApp.alreadyBoosted = false;
+  gemGameApp.potentialStash = [];
   $(".boost").removeClass("disabled");
   
   gemGameApp.updateScore(newScore);
@@ -424,7 +446,7 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 4 == 0) {
     gemGameApp.weightDifficulty++;
   }
-  if (gemGameApp.difficulty % 5 == 0 ) {
+  if (gemGameApp.difficulty % 6 == 0 ) {
     if(gemGameApp.colourDifficulty<5)
     gemGameApp.colourDifficulty++;
     }
