@@ -310,31 +310,24 @@ gemGameApp.boostHandler = () => {
       let currentComparison = "";
       let bonusScore = 0;
       let bonusSeconds =0;
-
-
-      if (gemGameApp.stash.length === 1) {
-        bonusScore = 20;
-        gemGameApp.updateScore(bonusScore);
-      } else { //handle when stash is 2-3 elements
     
-        gemGameApp.stash.sort();
+        //only do expemsive compaison if more than one stashed gem
+        if(gemGameApp.stash.length>1){
+          gemGameApp.stash.sort();
         for (let i = 0; i < gemGameApp.stash.length - 1; i++) {
+
           //compare each item against one another looking for comparisons
           //if only one element than give them 20$
 
           currentComparison = gemGameApp.stash[i];
-          console.log("current Comparison: " + currentComparison);
-
-          for (let j = i + 1; j < gemGameApp.stash.length; j++) {
-            if (currentComparison === gemGameApp.stash[j]) {
-              console.log("current Comparison: " + gemGameApp.stash[j]);
+          for (let j = i; j < gemGameApp.stash.length - 1; j++) {
+            if ((j+1 < gemGameApp.stash.length) && (currentComparison === gemGameApp.stash[j+1])) {
               matches++;
             }
           }
-          console.log("matches: " + matches);
         }
-      }
-
+        }
+        
       
 
       //remove styling from all stashes 
@@ -349,12 +342,21 @@ gemGameApp.boostHandler = () => {
       }
 
       //update score and time
-      if (matches >= gemGameApp.stash.length) {
+      if (matches >= 1) {
+        //im just adding to force it to make my equation work. Going to find a cleaner solution soon
+      if(matches == 1){
+        matches++;
+      }
        bonusScore = (gemGameApp.stash.length - matches) * 20;
-        console.log("bonusScore: " + bonusScore);
         gemGameApp.updateScore(bonusScore);
       }
-       bonusSeconds = matches * 10;
+
+      if(matches ===0) {
+        bonusScore = gemGameApp.stash.length* 20;
+      }
+      console.log("bonusScore: " + bonusScore);
+      //give players 10 seconds for 2 matching gems and 30 for 3 matching gems
+      bonusSeconds = matches * 10;
       console.log("bonusSeconds: " + bonusSeconds);
       gemGameApp.timer.totalSeconds += bonusSeconds;
 
