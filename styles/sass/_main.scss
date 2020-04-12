@@ -180,7 +180,7 @@ main {
     justify-content: center;
     width: 100%;
     li {
-        margin: 0 10px;
+        margin: 0 5px;
         text-align: center;
     }
 
@@ -210,6 +210,7 @@ main {
     }
 
     .stash {
+        font-size: 2.4rem;
         transition: all 0.5s ease-in-out;
     }
 }
