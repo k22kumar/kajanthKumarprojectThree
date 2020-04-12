@@ -958,6 +958,7 @@ input[type="checkbox"] {
   }
   .playArea .playerInfo, .playArea .stealInfo {
     font-size: 1.8rem;
+    padding: 5px;
   }
   .playArea .playerInfo {
     padding: 5px 0 10px 0;
