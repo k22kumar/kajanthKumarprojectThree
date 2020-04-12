@@ -443,13 +443,13 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
     gemGameApp.numberOfGems++;
   }
-  if (gemGameApp.difficulty % 3 == 0) {
+  if (gemGameApp.difficulty % 2 == 0) {
     gemGameApp.maxCapacity++;
   }
-  if (gemGameApp.difficulty % 4 == 0) {
+  if (gemGameApp.difficulty % 3 == 0) {
     gemGameApp.weightDifficulty++;
   }
-  if (gemGameApp.difficulty % 6 == 0 ) {
+  if (gemGameApp.difficulty % 5 == 0 ) {
     if(gemGameApp.colourDifficulty<5)
     gemGameApp.colourDifficulty++;
     }
@@ -506,7 +506,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 12;
+  gemGameApp.numberOfGems = 1;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
   gemGameApp.colourDifficulty = 1;
@@ -516,7 +516,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 600;
+  gemGameApp.timer.totalSeconds = 60;
 
   
   gemGameApp.checkTimer();
