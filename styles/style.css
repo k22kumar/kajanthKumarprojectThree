@@ -939,14 +939,20 @@ input[type="checkbox"] {
   .modalContent .modalOption, .modalContent .modalTitle {
     font-size: 1.5rem;
   }
+  .modalContent .instructionsText {
+    width: 80%;
+  }
   .playArea .playerInfo, .playArea .stealInfo {
     font-size: 1.8rem;
   }
-  .gem {
+  .gemGallery {
+    width: 100%;
+  }
+  .gemGallery .gem {
     width: 89px;
     height: 89px;
   }
-  .gem .value, .gem .weight {
+  .gemGallery .gem .value, .gemGallery .gem .weight {
     font-size: 1.6rem;
   }
 }

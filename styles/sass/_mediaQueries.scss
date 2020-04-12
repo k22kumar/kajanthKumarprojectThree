@@ -6,9 +6,12 @@
         .closeModal {
             font-size: 1.8rem;
         }
-    .modalOption, .modalTitle {
-        font-size: 1.5rem;
-    }
+        .modalOption, .modalTitle {
+            font-size: 1.5rem;
+        }
+        .instructionsText {
+            width: 80%;
+        }
     }
 
     .playArea {
@@ -17,11 +20,14 @@
         }
     }
 
-    .gem {
+    .gemGallery {
+        width: 100%;
+        .gem {
         width: 89px;
         height: 89px;
         .value, .weight {
         font-size: 1.6rem;
+    }
     }
     }
     
