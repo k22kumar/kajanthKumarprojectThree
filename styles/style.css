@@ -741,6 +741,8 @@ main {
 }
 
 .gemButton {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 92.5px;
   height: 92.5px;
   padding: 0;
@@ -851,18 +853,30 @@ main {
   scale: 1.1;
 }
 
-.stealInfo .submit {
+.stealInfo .submit, .stealInfo .boost {
   font-family: 'Poller One', cursive;
   color: white;
   background-color: #99622b;
   padding: 15px;
   border-radius: 8px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
-.stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover {
+.stealInfo .disabled {
+  background-color: lightgrey;
+  color: grey;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.stealInfo .submit:hover, .stealInfo .submit:active, .stealInfo .submit:hover, .stealInfo .boost:hover, .stealInfo .boost:active, .stealInfo .boost:hover {
   background-color: #caa9ca;
+}
+
+.stealInfo .stash {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .colour1 {

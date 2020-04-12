@@ -65,6 +65,7 @@ main {
 }
 
 .gemButton {
+    transition: all 0.3s ease-in-out;
     width: 92.5px;
     height: 92.5px;
     padding: 0;
@@ -100,6 +101,7 @@ main {
 
 
     .gem{
+        
         padding: 0;
         margin: auto;
         font-size: 3.6rem;
@@ -121,9 +123,7 @@ main {
     }
 }
 
-.chosenGem {
-    
-}
+
 
 .stealInfo{
     align-items: center;
@@ -164,18 +164,29 @@ main {
         scale: 1.1;
     }
 
-    .submit {
+    .submit, .boost {
     font-family: 'Poller One', cursive;
     color: white;
     background-color: $accent;
     padding: 15px;
     border-radius: 8px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    }
+
+    .disabled {
+    background-color: lightgrey;
+    color: grey;
+    pointer-events: none;
+    cursor: not-allowed;
     }
 
 
-    .submit:hover, .submit:active, .submit:hover {
+    .submit:hover, .submit:active, .submit:hover ,.boost:hover, .boost:active, .boost:hover{
         background-color: $pinkGem;
+    }
+
+    .stash {
+        transition: all 0.5s ease-in-out;
     }
 }
 

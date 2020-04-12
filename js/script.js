@@ -7,17 +7,18 @@ const gemGameApp = {
   gemsArray: [],
 
   //The carrying capacity of the character (can only carry 5 KG)
-  maxCapacity: 5,
+  maxCapacity: 2,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 3,
+  numberOfGems: 1,
   weightDifficulty: 2,
   valueDifficulty: 2,
-  colourDifficulty: 4,
+  colourDifficulty: 1,
   score: 0,
   //this represents the stash used for boosts in the game can only have 3 items init
   stash: [],
   potentialStash: [],
+  alreadyBoosted: false,
 
   //volume of Game
   volume: 0,
@@ -51,6 +52,7 @@ const gemGameApp = {
 gemGameApp.init = function () {
   gemGameApp.resetGame();
   gemGameApp.checkAnswer();
+  gemGameApp.boostHandler();
   gemGameApp.hambMenu();
   gemGameApp.restartGame();
   gemGameApp.instructionsButton();
@@ -230,27 +232,24 @@ gemGameApp.gemChoice = function () {
   $(".gemButton").on("click", function () {
     $(this).toggleClass("chosenGem");
     let colourBG = "";
-    console.log('before CC');
     for(let i=1; i<5; i++){
         let colourClass = `colour${i}`;
         const classToAdd = `colour${i}chosen`;
         if( $(this).hasClass(colourClass)){
-            console.log('yes');
             $(this).toggleClass(classToAdd);
         }
     }
-    console.log("after CC");
 
     //if it has a mask, remove mask and from the POTENTIAL stash
     if(!($(this).find('.catSymbol').hasClass('hide'))){
-        console.log("I have a mask");
         $(this).find(".catSymbol").addClass('hide');
         $(this).find(".gem i").removeClass("hide");
-        // console.log($(this).find('catSymbol'));
         console.log("before removing from stash: ");
         console.log(gemGameApp.potentialStash);
+
         const index = gemGameApp.potentialStash.indexOf($(this).attr('id'));
         gemGameApp.potentialStash.splice(index,1);
+
         console.log("after removing from stash: ");
         console.log(gemGameApp.potentialStash);
 
@@ -304,14 +303,71 @@ gemGameApp.checkAnswer = () => {
   });
 };
 
+//function to make sure boosts are used only once per round and give the appropiate boost
+gemGameApp.boostHandler = () => {
+  $('.boost').on('click', function() {
+      let matches = 0;
+      let currentComparison = "";
+      for (let i = 0; i < 1; i++) {
+        //compare each item against one another looking for comparisons
+        currentComparison = gemGameApp.stash[0];
+        for (let j = 1; j < 2; j++) {
+          if (currentComparison === gemGameApp.stash[j]) {
+            matches++;
+          }
+        }
+        console.log("matches: " + matches);
+      }
+
+      //remove styling from all stashes 
+      let colourClass = "";
+      let stash ="";
+      for(stashIndex=1; stashIndex<4; stashIndex++){
+        stash = `#stash${stashIndex}`;
+        for (let i = 1; i < 5; i++) {
+          colourClass = `colour${i}`;
+          $(stash).removeClass(colourClass);
+        }
+      }
+
+      //update score and time
+      const bonusScore = (gemGameApp.stash.length - matches) * 20;
+      console.log("bonusScore: " + bonusScore);
+      gemGameApp.updateScore(bonusScore);
+      const bonusSeconds = matches * 10;
+      console.log("bonusSeconds: " + bonusSeconds);
+      gemGameApp.timer.totalSeconds += bonusSeconds;
+
+      //user cant use boosts more than once per level
+      $(".boost").addClass("disabled");
+  });
+
+}
+
 //this function handles the sucess state of the game recieving the score to be added
 gemGameApp.sucessHandler = (newScore) => {
   gemGameApp.playSound("#jewels");
 
+    //boost stash gem colour handler
     if(gemGameApp.stash.length<3){
-        
+        const gemToStash = `#${gemGameApp.potentialStash[0]}`;
+        //go thru the four possible colours, give the stashed gem the same colour class
+        for (let i = 1; i < 5; i++) {
+          let colourClass = `colour${i}`;
+          const newStashedGem = `#stash${gemGameApp.stash.length + 1}`;
+          console.log(newStashedGem);
+          if ($(gemToStash).hasClass(colourClass)) {
+            $(newStashedGem).addClass(colourClass);
+            //save the colour to compare later during boostHandling
+            gemGameApp.stash.push(colourClass);
+          } else {
+            $(newStashedGem).removeClass(colourClass);
+          }
+        }
     }
-
+  gemGameApp.alreadyBoosted = false;
+  $(".boost").removeClass("disabled");
+  
   gemGameApp.updateScore(newScore);
   gemGameApp.updateDifficulty();
   gemGameApp.updateCapacity();
@@ -356,7 +412,7 @@ gemGameApp.updateCapacity = () => {
 gemGameApp.updateDifficulty = () => {
   gemGameApp.difficulty++;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  if (true) {
+  if (gemGameApp.difficulty % 2 == 0) {
     gemGameApp.valueDifficulty++;
   }
   if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
@@ -368,6 +424,11 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 4 == 0) {
     gemGameApp.weightDifficulty++;
   }
+  if (gemGameApp.difficulty % 5 == 0 ) {
+    if(gemGameApp.colourDifficulty<5)
+    gemGameApp.colourDifficulty++;
+    }
+  
 };
 
 //this function periodicly checks the  "global" timer and when it reaches 0 ends the game
@@ -411,17 +472,19 @@ gemGameApp.restartGame = () => {
 
 //this function will reset the game from scratch
 gemGameApp.resetGame = () => {
-
+  //boost doesnt have an gems to boost on start of game
+  $('.boost').addClass('disabled');
   gemGameApp.gemsArray = [];
   gemGameApp.stash = [];
   gemGameApp.potentialStash = [];
-  gemGameApp.maxCapacity = 5;
+  gemGameApp.maxCapacity = 2;
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 12;
+  gemGameApp.numberOfGems = 1;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
+  gemGameApp.colourDifficulty = 1;
   gemGameApp.score = 0;
   gemGameApp.updateScore();
   gemGameApp.createGemsArray();
