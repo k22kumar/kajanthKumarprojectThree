@@ -663,7 +663,7 @@ header .playGame:visited {
 
 /* main styles start*/
 /* flex styles*/
-.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea {
+.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea, .timeAndBagContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -704,6 +704,44 @@ main {
           align-items: center;
 }
 
+.sound {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 44px;
+  height: 44px;
+  -webkit-transition: all .6s;
+  transition: all .6s;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.sound .volOff {
+  margin-left: -13px;
+}
+
+.sound:active, .sound:hover, .sound:focus {
+  background-color: black;
+  color: white;
+  scale: 1.1;
+}
+
+input[type="checkbox"] {
+  /* This is much better than display none*/
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
 .playArea {
   width: 80%;
   -webkit-box-orient: vertical;
@@ -715,7 +753,7 @@ main {
           align-items: center;
 }
 
-.time {
+.timeAndBagContainer .time {
   width: 65px;
 }
 
@@ -817,44 +855,6 @@ main {
   text-align: center;
 }
 
-.stealInfo input[type="checkbox"] {
-  /* This is much better than display none*/
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-
-.stealInfo .sound {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 44px;
-  height: 44px;
-  -webkit-transition: all .6s;
-  transition: all .6s;
-  color: black;
-  background-color: white;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 2rem;
-}
-
-.stealInfo .sound .volOff {
-  margin-left: -13px;
-}
-
-.stealInfo .sound:active, .stealInfo .sound:hover, .stealInfo .sound:focus {
-  background-color: black;
-  color: white;
-  scale: 1.1;
-}
-
 .stealInfo .submit, .stealInfo .boost {
   font-family: 'Poller One', cursive;
   color: white;
@@ -916,7 +916,8 @@ main {
 /* main styles end*/
 @media (max-width: 450px) {
   .modalContent {
-    width: 260px;
+    width: 100%;
+    padding: 5px 20px;
   }
   .modalContent .closeModal {
     font-size: 1.8rem;

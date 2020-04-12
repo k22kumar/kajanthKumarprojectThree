@@ -25,7 +25,7 @@ const gemGameApp = {
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
-    totalSeconds: 600,
+    totalSeconds: 60,
     start: function () {
       let timer = this;
       //create an interval as a property and count DOWN from 60
@@ -515,7 +515,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 600;
+  gemGameApp.timer.totalSeconds = 60;
 
   
   gemGameApp.checkTimer();
