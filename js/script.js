@@ -462,7 +462,7 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 2 == 0) {
     gemGameApp.valueDifficulty++;
   }
-  if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
+  if (gemGameApp.difficulty % 1 == 0 && gemGameApp.difficulty < 13) {
     gemGameApp.numberOfGems++;
   }
   if (gemGameApp.difficulty % 2 == 0) {
