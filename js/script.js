@@ -68,7 +68,7 @@ gemGameApp.startGame = () => {
     gemGameApp.showInstructions();
     $(".modal").removeClass("hide");
     $("main").removeClass("hide");
-    gemGameApp.playSound('#music2')
+    gemGameApp.playSound('#music2');
   });
 };
 
@@ -365,6 +365,7 @@ gemGameApp.boostHandler = () => {
       //clear the stash
       gemGameApp.stash = [];
   });
+    gemGameApp.playSound("#boost");
 
 }
 
