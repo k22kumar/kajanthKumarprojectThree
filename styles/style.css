@@ -940,6 +940,29 @@ input[type="checkbox"] {
   background-color: #bc0f09;
 }
 
+@-webkit-keyframes fadingOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadingOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation: fadingOut 3s ease-in-out;
+          animation: fadingOut 3s ease-in-out;
+}
+
 /* main styles end*/
 @media (max-width: 450px) {
   .modalContent {

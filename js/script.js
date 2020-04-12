@@ -417,11 +417,13 @@ gemGameApp.sucessHandler = (newScore) => {
   gemGameApp.updateDifficulty();
   gemGameApp.updateCapacity();
   gemGameApp.resetButtons();
+  gemGameApp.createGemsArray()
   gemGameApp.createGemsArray();
   gemGameApp.createGems();
   gemGameApp.knapsackAlgorithm(gemGameApp.gemsArray);
   gemGameApp.gemChoice();
 };
+
 
 //this function handles the fail state of the game
 gemGameApp.failureHandler = () => {
@@ -460,7 +462,7 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 2 == 0) {
     gemGameApp.valueDifficulty++;
   }
-  if (gemGameApp.difficulty % 1.5 == 0 && gemGameApp.difficulty < 13) {
+  if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
     gemGameApp.numberOfGems++;
   }
   if (gemGameApp.difficulty % 2 == 0) {
@@ -527,7 +529,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 12;
+  gemGameApp.numberOfGems = 2;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
   gemGameApp.colourDifficulty = 1;
@@ -537,7 +539,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 600;
+  gemGameApp.timer.totalSeconds = 60;
 
   
   gemGameApp.checkTimer();

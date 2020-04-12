@@ -129,6 +129,8 @@ main {
     white-space: nowrap;
     text-decoration: none;
     border: 0;
+
+
     
     .value, .weight, .gem {
         align-items: center;
@@ -175,6 +177,7 @@ main {
 
 
 
+
 .stealInfo{
     align-items: center;
     justify-content: center;
@@ -216,6 +219,7 @@ main {
 }
 
 
+
 .colour1 {
     color: $pinkGem;
 }
@@ -248,7 +252,19 @@ main {
     background-color: darken($redGem, 35%);
 }
 
+@keyframes fadingOut {
+    0% {
+        opacity: 1;
+    }
 
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    animation: fadingOut 3s ease-in-out;
+}
 
 
 
