@@ -21,12 +21,18 @@
             <p class="finalScore hide"></p>
             <button class="modalOption" id="restart">Restart <i class="fas fa-redo"></i></button>
             <button id="instructions" class="modalOption">Instructions</button>
-            <p class="instructionsText hide"> Catwoman is on a robbing spree in Gotham to raise money for a cure to <span class="toUpper">covid</span>-19! She can only carry so much in her bag! Select the gems with <span class="toUpper">total weight lower
-                    or equal</span> to her <span class="toUpper">bag</span>. Make sure you are stealing the <span class="toUpper">highest</span> possible amount you can per level. 
-                    <br>
-                    <br>
-                     Catwoman always puts the <span class="toUpper">first</span> gem in her personal stash (bottom right). Hit the Boost button to increase your time and score. Every <span class="toUpper">unique</span> gem gives you 20$, match 2 gems for 10 extra seconds, 3 for 30 extra seconds. Once her stash is <span class="toUpper">full</span>, she cannot add a new gem to the stash! 
-                </p>
+            <p class="instructionsText hide"> Catwoman is on a robbing spree in Gotham to raise money for a cure to
+                <span class="toUpper">covid</span>-19! She can only carry so much in her bag! Select the gems with <span
+                    class="toUpper">total weight lower
+                    or equal</span> to her <span class="toUpper">bag</span>. Make sure you are stealing the <span
+                    class="toUpper">highest</span> possible amount you can per level.
+                <br>
+                <br>
+                Catwoman always puts the <span class="toUpper">first</span> gem in her personal stash (bottom right).
+                Hit the Boost button to increase your time and score. Every <span class="toUpper">unique</span> gem
+                gives you 20$, match 2 gems for 10 extra seconds, 3 for 30 extra seconds. Once her stash is <span
+                    class="toUpper">full</span>, she cannot add a new gem to the stash!
+            </p>
             <button class="modalOption toUpper hide" id="playGameMenu">play</button>
         </div>
     </div>
@@ -59,24 +65,27 @@
                     <li class="score">
                         <p>Score: 0</p>
                     </li>
-                    <li class="sound">
-                        <label class="soundLabel" for="sound">
-                            <div class="volUp">
-                                <i class="fas fa-volume-up"></i>
-                            </div>
-                            <div class="volOff hide">
-                                <i class="fas fa-volume-off"></i>
-                            </div>
-                        </label>
-                        <input class="soundInput" type="checkbox" autocomplete="off" id="sound" name="sound">
+                    <li class="menuOptions">
+                        <div class="sound">
+                            <label class="soundLabel" for="sound">
+                                <div class="volUp">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                                <div class="volOff hide">
+                                    <i class="fas fa-volume-off"></i>
+                                </div>
+                            </label>
+                            <input class="soundInput" type="checkbox" autocomplete="off" id="sound" name="sound">
+                        </div>
+                        <div>
+                            <nav class="catNav">
+                                <button class="hambMenu">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </nav>
+                        </div>
                     </li>
-                    <li>
-                        <nav class="catNav">
-                            <button class="hambMenu">
-                                <i class="fas fa-bars"></i>
-                            </button>
-                        </nav>
-                    </li>
+
                 </ul>
                 <ul class="timeAndBagContainer">
                     <li class="time">

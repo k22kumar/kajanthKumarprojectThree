@@ -2,7 +2,7 @@
 
 /* flex styles*/
 
-.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea, .timeAndBagContainer {
+.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea, .timeAndBagContainer, .menuOptions {
     display: flex;
 }
 
@@ -45,6 +45,12 @@ main {
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.menuOptions {
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25%;
 }
 
 .sound {

@@ -663,7 +663,7 @@ header .playGame:visited {
 
 /* main styles start*/
 /* flex styles*/
-.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea, .timeAndBagContainer {
+.gameContainer, .stealInfo, .gemGallery, .gem, .gemInfo, .value, .weight, .gemButton, .playerInfo, .playArea, .timeAndBagContainer, .menuOptions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -718,6 +718,16 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.menuOptions {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 25%;
 }
 
 .sound {
