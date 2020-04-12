@@ -16,6 +16,7 @@ const gemGameApp = {
   score: 0,
   //this represents the stash used for boosts in the game can only have 3 items init
   stash: [],
+  potentialStash: [],
 
   //volume of Game
   volume: 0,
@@ -227,10 +228,53 @@ gemGameApp.gemChoice = function () {
   $(".gemButton").on("click", function () {
     $(this).toggleClass("chosenGem");
 
+    //if it has a mask, remove mask and from the POTENTIAL stash
+    if(!($(this).find('.catSymbol').hasClass('hide'))){
+        console.log("I have a mask");
+        $(this).find(".catSymbol").addClass('hide');
+        $(this).find(".gem i").removeClass("hide");
+        // console.log($(this).find('catSymbol'));
+        console.log("before removing from stash: ");
+        console.log(gemGameApp.potentialStash);
+        const index = gemGameApp.potentialStash.indexOf($(this).attr('id'));
+        gemGameApp.potentialStash.splice(index,1);
+        console.log("after removing from stash: ");
+        console.log(gemGameApp.potentialStash);
 
+        //if the stash is not empty assign a new mask
+        if(!(gemGameApp.potentialStash.length === 0)) {
+            //when a mask is removed goto the potential stash and add mask to the next item
+            const nextStashedGem = `#${gemGameApp.potentialStash[0]}`;
+            console.log($(nextStashedGem));
+            $(nextStashedGem).find('.catSymbol').removeClass('hide');
+            $(nextStashedGem).find(".gem i").addClass("hide");
+            console.log('nextStashedGem: ' + nextStashedGem);
+        }
+    } else { //if it does not have a mask
+        
+        console.log('stashing');
+        console.log(gemGameApp.potentialStash);
+        //if nobody has a mask ie the potential stash is empty add a mask to it 
+        if ((gemGameApp.potentialStash.length === 0)) {
+          $(this).find(".catSymbol").removeClass("hide");
+          $(this).find(".gem i").addClass("hide");
+        }
+        const gemToBeStashed = $(this).attr("id");
+        //if the user selects a gem twice, it means they DONT want that gem so remove from potential stash
+        if(gemGameApp.potentialStash.includes(gemToBeStashed)){
+            const repeatIndex = gemGameApp.potentialStash.indexOf(gemToBeStashed);
+            gemGameApp.potentialStash.splice(repeatIndex, 1);
+        } else {
+            //add to the potential stash
+            gemGameApp.potentialStash.push(gemToBeStashed);
+        }
+        console.log(gemGameApp.potentialStash);
+    }
+    
 
   });
 };
+
 
 //This function will check the answer of users
 gemGameApp.checkAnswer = () => {
@@ -353,6 +397,8 @@ gemGameApp.restartGame = () => {
 gemGameApp.resetGame = () => {
 
   gemGameApp.gemsArray = [];
+  gemGameApp.stash = [];
+  gemGameApp.potentialStash = [];
   gemGameApp.maxCapacity = 5;
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
