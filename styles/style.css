@@ -948,11 +948,7 @@ input[type="checkbox"] {
   .gemGallery {
     width: 100%;
   }
-  .gemGallery .gem {
-    width: 89px;
-    height: 89px;
-  }
-  .gemGallery .gem .value, .gemGallery .gem .weight {
+  .gemGallery .value, .gemGallery .weight {
     font-size: 1.6rem;
   }
 }
