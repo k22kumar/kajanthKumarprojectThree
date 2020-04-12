@@ -23,9 +23,18 @@ main {
     font-size: 2.5rem;
     background-color:  $primaryBlue;
     padding: 10px;
-    margin: 10px;
-    border-radius: 8px;
     color: white;
+}
+
+.timeAndBagContainer{
+    width: 100%;
+    font-size: 2.5rem;
+    background-color:  $primaryBlue;
+    color: white;
+    height: 50px;
+    justify-content: center;
+    border-bottom-left-radius: 44%;
+    border-bottom-right-radius: 44%;
 }
 
 .playerInfo {
@@ -65,7 +74,7 @@ main {
         }
 
 .playArea {
-    width: 80%;
+    width: 100%;
     flex-direction: column;
     align-items: center;
 }
@@ -91,6 +100,7 @@ main {
 }
 
 .gemGallery {
+    width: 60%;
     margin: auto;
     flex-wrap: wrap;
     align-items: center;

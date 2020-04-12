@@ -21,7 +21,7 @@ const gemGameApp = {
   alreadyBoosted: false,
 
   //volume of Game
-  volume: 0,
+  volume: 0.15,
 
   //this is a global timer, by keeping it global, I can manipulate later on if I decide to add functionality
   timer: {
@@ -80,7 +80,7 @@ gemGameApp.controlSound = function () {
     $(".volUp").toggleClass("hide");
     $(".volOff").toggleClass("hide");
     $(".volOff").hasClass("hide")
-      ? (gemGameApp.volume = 0) //make 0.15
+      ? (gemGameApp.volume = 0.15) //make 0.15
       : (gemGameApp.volume = 0);
     $('#music2')[0].volume = gemGameApp.volume;
   });
@@ -505,7 +505,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 1;
+  gemGameApp.numberOfGems = 12;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
   gemGameApp.colourDifficulty = 1;

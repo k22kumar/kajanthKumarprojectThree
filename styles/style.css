@@ -500,7 +500,7 @@ body {
 .modal .modalContent {
   width: 460px;
   border-radius: 8px;
-  position: relative;
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -689,9 +689,20 @@ main {
   font-size: 2.5rem;
   background-color: #042337;
   padding: 10px;
-  margin: 10px;
-  border-radius: 8px;
   color: white;
+}
+
+.timeAndBagContainer {
+  width: 100%;
+  font-size: 2.5rem;
+  background-color: #042337;
+  color: white;
+  height: 50px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom-left-radius: 44%;
+  border-bottom-right-radius: 44%;
 }
 
 .playerInfo {
@@ -743,7 +754,7 @@ input[type="checkbox"] {
 }
 
 .playArea {
-  width: 80%;
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -772,6 +783,7 @@ input[type="checkbox"] {
 }
 
 .gemGallery {
+  width: 60%;
   margin: auto;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -916,7 +928,8 @@ input[type="checkbox"] {
 /* main styles end*/
 @media (max-width: 450px) {
   .modalContent {
-    width: 100%;
+    width: 370px;
+    margin-top: 25%;
     padding: 5px 20px;
   }
   .modalContent .closeModal {
@@ -925,10 +938,7 @@ input[type="checkbox"] {
   .modalContent .modalOption, .modalContent .modalTitle {
     font-size: 1.5rem;
   }
-  .playArea {
-    width: 90%;
-  }
   .playArea .playerInfo, .playArea .stealInfo {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
