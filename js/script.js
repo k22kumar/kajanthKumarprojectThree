@@ -231,7 +231,12 @@ gemGameApp.gemChoice = function () {
     $(this).toggleClass("chosenGem");
     let colourBG = "";
     for(let i=1; i<5; i++){
-
+        let colourClass = `colour${i}`;
+        if($(this).hasClass('chosenGem') && $(this).hasClass(colourClass)){
+            console.log('yes');
+            const classToAdd = `colour${i}chosen`;
+            $(this).toggleClass(classToAdd);
+        }
     }
 
     //if it has a mask, remove mask and from the POTENTIAL stash
