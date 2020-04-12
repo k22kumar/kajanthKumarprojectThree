@@ -516,7 +516,7 @@ gemGameApp.resetGame = () => {
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 60;
+  gemGameApp.timer.totalSeconds = 600;
 
   
   gemGameApp.checkTimer();
