@@ -38,7 +38,6 @@ main {
     width: 80%;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
 .time {
@@ -60,6 +59,7 @@ main {
 }
 
 .gemGallery {
+    margin: auto;
     flex-wrap: wrap;
     align-items: center;
 }
