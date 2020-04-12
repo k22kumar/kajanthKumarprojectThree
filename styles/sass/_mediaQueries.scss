@@ -18,6 +18,13 @@
         .playerInfo, .stealInfo {
             font-size: 1.8rem;
         }
+        .playerInfo {
+            padding: 0;
+            padding-bottom: 10px;
+        }
+        .timeAndBagContainer {
+            height: 40px;
+        }
     }
 
     .gemGallery {

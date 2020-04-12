@@ -955,6 +955,13 @@ input[type="checkbox"] {
   .playArea .playerInfo, .playArea .stealInfo {
     font-size: 1.8rem;
   }
+  .playArea .playerInfo {
+    padding: 0;
+    padding-bottom: 10px;
+  }
+  .playArea .timeAndBagContainer {
+    height: 40px;
+  }
   .gemGallery {
     width: 100%;
   }
