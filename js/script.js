@@ -10,7 +10,7 @@ const gemGameApp = {
   maxCapacity: 2,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 2,
+  numberOfGems: 1,
   weightDifficulty: 2,
   valueDifficulty: 2,
   colourDifficulty: 1,
@@ -329,24 +329,26 @@ gemGameApp.boostHandler = () => {
         
       
 
-      //remove styling from all stashes 
-      let colourClass = "";
-      let stash ="";
-      for(stashIndex=1; stashIndex<4; stashIndex++){
-        stash = `#stash${stashIndex}`;
-        for (let i = 1; i < 5; i++) {
-          colourClass = `colour${i}`;
-          $(stash).removeClass(colourClass);
-        }
-      }
+      gemGameApp.removeColourFromStash();
 
       //update score and time
       if (matches >= 1) {
         //im just adding to force it to make my equation work. Going to find a cleaner solution soon
-      if(matches == 1){
+      
+      
+      if (matches == 1) {
         matches++;
       }
-       bonusScore = (gemGameApp.stash.length - matches) * 20;
+
+      if (matches === 2) {
+        bonusSeconds = 10;
+      }
+      
+      if (matches === 3) {
+        bonusSeconds = 30;
+        bonusScore = (gemGameApp.stash.length - matches) * 20;
+      }
+        
       }
 
       if(matches ===0) {
@@ -356,7 +358,10 @@ gemGameApp.boostHandler = () => {
       gemGameApp.updateScore(bonusScore);
       console.log("bonusScore: " + bonusScore);
       //give players 10 seconds for 2 matching gems and 30 for 3 matching gems
-      bonusSeconds = matches * 10;
+      
+      
+
+      console.log("matches: " + matches);
       console.log("bonusSeconds: " + bonusSeconds);
       gemGameApp.timer.totalSeconds += bonusSeconds;
 
@@ -369,6 +374,20 @@ gemGameApp.boostHandler = () => {
    
 
 }
+
+//function to remove styling from all stashes 
+gemGameApp.removeColourFromStash = () => {
+  let colourClass = "";
+  let stash = "";
+  for (stashIndex = 1; stashIndex < 4; stashIndex++) {
+    stash = `#stash${stashIndex}`;
+    for (let i = 1; i < 5; i++) {
+      colourClass = `colour${i}`;
+      $(stash).removeClass(colourClass);
+    }
+  }
+}
+      
 
 //this function handles the sucess state of the game recieving the score to be added
 gemGameApp.sucessHandler = (newScore) => {
@@ -423,8 +442,8 @@ gemGameApp.resetButtons = () => {
 };
 
 //function to update the score, if no param is given defaults to zero thus resetting the score
-gemGameApp.updateScore = (scoreToAdd = 0) => {
-  scoreToAdd === 0 ? (gemGameApp.score = 0) : (gemGameApp.score += scoreToAdd);
+gemGameApp.updateScore = (scoreToAdd) => {
+  gemGameApp.score += scoreToAdd;
   const newScore = ` Score: $${gemGameApp.score} `;
   $(".score").text(newScore);
 };
@@ -441,7 +460,7 @@ gemGameApp.updateDifficulty = () => {
   if (gemGameApp.difficulty % 2 == 0) {
     gemGameApp.valueDifficulty++;
   }
-  if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
+  if (gemGameApp.difficulty % 1.5 == 0 && gemGameApp.difficulty < 13) {
     gemGameApp.numberOfGems++;
   }
   if (gemGameApp.difficulty % 2 == 0) {
@@ -503,21 +522,22 @@ gemGameApp.resetGame = () => {
   gemGameApp.gemsArray = [];
   gemGameApp.stash = [];
   gemGameApp.potentialStash = [];
+  gemGameApp.removeColourFromStash();
   gemGameApp.maxCapacity = 2;
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 1;
+  gemGameApp.numberOfGems = 12;
   gemGameApp.weightDifficulty = 2;
   gemGameApp.valueDifficulty = 2;
   gemGameApp.colourDifficulty = 1;
   gemGameApp.score = 0;
-  gemGameApp.updateScore();
+  gemGameApp.updateScore(0);
   gemGameApp.createGemsArray();
   gemGameApp.createGems();
   gemGameApp.timer.pause();
   $(".time").text(parseInt(60));
-  gemGameApp.timer.totalSeconds = 60;
+  gemGameApp.timer.totalSeconds = 600;
 
   
   gemGameApp.checkTimer();
