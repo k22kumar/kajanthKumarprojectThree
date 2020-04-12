@@ -230,14 +230,16 @@ gemGameApp.gemChoice = function () {
   $(".gemButton").on("click", function () {
     $(this).toggleClass("chosenGem");
     let colourBG = "";
+    console.log('before CC');
     for(let i=1; i<5; i++){
         let colourClass = `colour${i}`;
-        if($(this).hasClass('chosenGem') && $(this).hasClass(colourClass)){
+        const classToAdd = `colour${i}chosen`;
+        if( $(this).hasClass(colourClass)){
             console.log('yes');
-            const classToAdd = `colour${i}chosen`;
             $(this).toggleClass(classToAdd);
         }
     }
+    console.log("after CC");
 
     //if it has a mask, remove mask and from the POTENTIAL stash
     if(!($(this).find('.catSymbol').hasClass('hide'))){
@@ -281,8 +283,6 @@ gemGameApp.gemChoice = function () {
         }
         console.log(gemGameApp.potentialStash);
     }
-    
-
   });
 };
 
