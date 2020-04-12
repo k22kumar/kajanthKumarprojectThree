@@ -10,7 +10,7 @@ const gemGameApp = {
   maxCapacity: 2,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 1,
+  numberOfGems: 2,
   weightDifficulty: 2,
   valueDifficulty: 2,
   colourDifficulty: 1,
@@ -18,7 +18,6 @@ const gemGameApp = {
   //this represents the stash used for boosts in the game can only have 3 items init
   stash: [],
   potentialStash: [],
-  alreadyBoosted: false,
 
   //volume of Game
   volume: 0.15,
@@ -348,12 +347,13 @@ gemGameApp.boostHandler = () => {
         matches++;
       }
        bonusScore = (gemGameApp.stash.length - matches) * 20;
-        gemGameApp.updateScore(bonusScore);
       }
 
       if(matches ===0) {
         bonusScore = gemGameApp.stash.length* 20;
       }
+
+      gemGameApp.updateScore(bonusScore);
       console.log("bonusScore: " + bonusScore);
       //give players 10 seconds for 2 matching gems and 30 for 3 matching gems
       bonusSeconds = matches * 10;
@@ -364,8 +364,9 @@ gemGameApp.boostHandler = () => {
       $(".boost").addClass("disabled");
       //clear the stash
       gemGameApp.stash = [];
+       gemGameApp.playSound("#boost");
   });
-    gemGameApp.playSound("#boost");
+   
 
 }
 
