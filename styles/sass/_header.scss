@@ -100,7 +100,7 @@ header {
         border-radius: 8px;
     }
 
-    .artist {
+    .artist, .musician {
         font-family: 'Poller One', cursive;
         font-size: 1.4rem;
         text-decoration: none;
@@ -108,6 +108,10 @@ header {
         position: absolute;
         left: 20px;
         bottom: 20px;
+    }
+
+    .musician {
+        bottom: 40px;
     }
 
     .playGame {

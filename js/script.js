@@ -429,7 +429,7 @@ gemGameApp.updateScore = (scoreToAdd = 0) => {
 
 //function to update the capacity
 gemGameApp.updateCapacity = () => {
-  $(".capacity").text(` Capacity: ${gemGameApp.maxCapacity}KG`);
+  $(".capacity").text(` Bag: ${gemGameApp.maxCapacity}KG`);
 };
 
 //function to increase difficulty steadily upon sucessful rounds

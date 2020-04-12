@@ -626,7 +626,7 @@ header .mainTitle {
   border-radius: 8px;
 }
 
-header .artist {
+header .artist, header .musician {
   font-family: 'Poller One', cursive;
   font-size: 1.4rem;
   text-decoration: none;
@@ -634,6 +634,10 @@ header .artist {
   position: absolute;
   left: 20px;
   bottom: 20px;
+}
+
+header .musician {
+  bottom: 40px;
 }
 
 header .playGame {
