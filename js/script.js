@@ -176,7 +176,6 @@ gemGameApp.knapsackAlgorithm = (gemArray) => {
     }
   }
   gemGameApp.maxValue = dpMatrix[rows - 1][cols - 1];
-  console.log("knapsack value is:" + gemGameApp.maxValue);
   gemGameApp.print2dArray(dpMatrix);
 };
 
@@ -243,28 +242,18 @@ gemGameApp.gemChoice = function () {
     if(!($(this).find('.catSymbol').hasClass('hide'))){
         $(this).find(".catSymbol").addClass('hide');
         $(this).find(".gem i").removeClass("hide");
-        console.log("before removing from stash: ");
-        console.log(gemGameApp.potentialStash);
 
         const index = gemGameApp.potentialStash.indexOf($(this).attr('id'));
         gemGameApp.potentialStash.splice(index,1);
-
-        console.log("after removing from stash: ");
-        console.log(gemGameApp.potentialStash);
 
         //if the stash is not empty assign a new mask
         if(!(gemGameApp.potentialStash.length === 0)) {
             //when a mask is removed goto the potential stash and add mask to the next item
             const nextStashedGem = `#${gemGameApp.potentialStash[0]}`;
-            console.log($(nextStashedGem));
             $(nextStashedGem).find('.catSymbol').removeClass('hide');
             $(nextStashedGem).find(".gem i").addClass("hide");
-            console.log('nextStashedGem: ' + nextStashedGem);
         }
     } else { //if it does not have a mask
-        
-        console.log('stashing');
-        console.log(gemGameApp.potentialStash);
         //if nobody has a mask ie the potential stash is empty add a mask to it 
         if ((gemGameApp.potentialStash.length === 0)) {
           $(this).find(".catSymbol").removeClass("hide");
@@ -279,7 +268,6 @@ gemGameApp.gemChoice = function () {
             //add to the potential stash
             gemGameApp.potentialStash.push(gemToBeStashed);
         }
-        console.log(gemGameApp.potentialStash);
     }
   });
 };
@@ -341,11 +329,11 @@ gemGameApp.boostHandler = () => {
       }
 
       if (matches === 2) {
-        bonusSeconds = 10;
+        bonusSeconds = 15;
       }
       
       if (matches === 3) {
-        bonusSeconds = 30;
+        bonusSeconds = 40;
         bonusScore = (gemGameApp.stash.length - matches) * 20;
       }
         
@@ -356,13 +344,8 @@ gemGameApp.boostHandler = () => {
       }
 
       gemGameApp.updateScore(bonusScore);
-      console.log("bonusScore: " + bonusScore);
       //give players 10 seconds for 2 matching gems and 30 for 3 matching gems
       
-      
-
-      console.log("matches: " + matches);
-      console.log("bonusSeconds: " + bonusSeconds);
       gemGameApp.timer.totalSeconds += bonusSeconds;
 
       //user cant use boosts more than once per level
@@ -400,7 +383,6 @@ gemGameApp.sucessHandler = (newScore) => {
         for (let i = 1; i < 5; i++) {
           let colourClass = `colour${i}`;
           const newStashedGem = `#stash${gemGameApp.stash.length + 1}`;
-          console.log(newStashedGem);
           if ($(gemToStash).hasClass(colourClass)) {
             $(newStashedGem).addClass(colourClass);
             //save the colour to compare later during boostHandling
