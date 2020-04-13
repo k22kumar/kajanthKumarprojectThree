@@ -329,7 +329,7 @@ gemGameApp.boostHandler = () => {
       }
 
       if (matches === 2) {
-        bonusSeconds = 15;
+        bonusSeconds = 20;
       }
       
       if (matches === 3) {
