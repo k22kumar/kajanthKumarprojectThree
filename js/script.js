@@ -334,13 +334,13 @@ gemGameApp.boostHandler = () => {
       
       if (matches === 3) {
         bonusSeconds = 40;
-        bonusScore = (gemGameApp.stash.length - matches) * 20;
+        bonusScore = (gemGameApp.stash.length - matches) * 30;
       }
         
       }
 
       if(matches ===0) {
-        bonusScore = gemGameApp.stash.length* 20;
+        bonusScore = gemGameApp.stash.length* 30;
       }
 
       gemGameApp.updateScore(bonusScore);

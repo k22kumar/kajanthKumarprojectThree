@@ -967,7 +967,7 @@ input[type="checkbox"] {
 @media (max-width: 450px) {
   .modalContent {
     width: 370px;
-    margin-top: 25%;
+    margin-top: 20%;
     padding: 5px 20px;
   }
   .modalContent .closeModal {
