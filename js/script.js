@@ -7,12 +7,12 @@ const gemGameApp = {
   gemsArray: [],
 
   //The carrying capacity of the character (can only carry 5 KG)
-  maxCapacity: 2,
+  maxCapacity: 3,
   maxValue: 0,
   difficulty: 1,
-  numberOfGems: 1,
-  weightDifficulty: 2,
-  valueDifficulty: 2,
+  numberOfGems: 3,
+  weightDifficulty: 1,
+  valueDifficulty: 1,
   colourDifficulty: 1,
   score: 0,
   //this represents the stash used for boosts in the game can only have 3 items init
@@ -459,19 +459,19 @@ gemGameApp.updateCapacity = () => {
 gemGameApp.updateDifficulty = () => {
   gemGameApp.difficulty++;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  if (gemGameApp.difficulty % 2 == 0) {
+  if (gemGameApp.difficulty % 1 == 0) {
     gemGameApp.valueDifficulty++;
   }
-  if (gemGameApp.difficulty % 1 == 0 && gemGameApp.difficulty < 13) {
+  if (gemGameApp.difficulty % 2 == 0 && gemGameApp.difficulty < 13) {
     gemGameApp.numberOfGems++;
   }
-  if (gemGameApp.difficulty % 2 == 0) {
+  if (gemGameApp.difficulty % 3 == 0) {
     gemGameApp.maxCapacity++;
   }
   if (gemGameApp.difficulty % 3 == 0) {
     gemGameApp.weightDifficulty++;
   }
-  if (gemGameApp.difficulty % 5 == 0 ) {
+  if (gemGameApp.difficulty % 6 == 0 ) {
     if(gemGameApp.colourDifficulty<5)
     gemGameApp.colourDifficulty++;
     }
@@ -525,13 +525,13 @@ gemGameApp.resetGame = () => {
   gemGameApp.stash = [];
   gemGameApp.potentialStash = [];
   gemGameApp.removeColourFromStash();
-  gemGameApp.maxCapacity = 2;
+  gemGameApp.maxCapacity = 3;
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
   gemGameApp.numberOfGems = 2;
-  gemGameApp.weightDifficulty = 2;
-  gemGameApp.valueDifficulty = 2;
+  gemGameApp.weightDifficulty = 1;
+  gemGameApp.valueDifficulty = 1;
   gemGameApp.colourDifficulty = 1;
   gemGameApp.score = 0;
   gemGameApp.updateScore(0);
