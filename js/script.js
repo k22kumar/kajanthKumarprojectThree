@@ -525,11 +525,11 @@ gemGameApp.resetGame = () => {
   gemGameApp.stash = [];
   gemGameApp.potentialStash = [];
   gemGameApp.removeColourFromStash();
-  gemGameApp.maxCapacity = 3;
+  gemGameApp.maxCapacity = 2;
   gemGameApp.maxValue = 0;
   gemGameApp.difficulty = 1;
   $(".difficulty").text(` Level: ${gemGameApp.difficulty}`);
-  gemGameApp.numberOfGems = 2;
+  gemGameApp.numberOfGems = 1;
   gemGameApp.weightDifficulty = 1;
   gemGameApp.valueDifficulty = 1;
   gemGameApp.colourDifficulty = 1;
