@@ -857,6 +857,10 @@ input[type="checkbox"] {
   max-height: 100%;
 }
 
+.gemButton .gem .hide {
+  display: none;
+}
+
 .gemButton .value {
   background-color: yellow;
 }

@@ -6,7 +6,7 @@ const gemGameApp = {
   //gemsArray: this is an array used to store the gems that have a WEIGHT, and a VALUE
   gemsArray: [],
 
-  //The carrying capacity of the character (can only carry 5 KG)
+  //The carrying capacity of the character (can only carry 3 KG)
   maxCapacity: 3,
   maxValue: 0,
   difficulty: 1,
@@ -15,7 +15,7 @@ const gemGameApp = {
   valueDifficulty: 1,
   colourDifficulty: 1,
   score: 0,
-  //this represents the stash used for boosts in the game can only have 3 items init
+  //this represents the stash used for boosts in the game can only have 3 items in it
   stash: [],
   potentialStash: [],
 
@@ -115,7 +115,7 @@ gemGameApp.createGemsArray = () => {
   }
 };
 
-//this function will dynamically insert recipes into the html
+//this function will dynamically insert gems into the html
 gemGameApp.createGems = function () {
   $(".gemGallery").empty(); //clear out any gems already in gallery
   let i = 0;
@@ -194,8 +194,6 @@ gemGameApp.print2dArray = (matrix) => {
 
 //Utility function that helps sort an gem array based on its weight
 gemGameApp.gemsCompareWeight = (gem1, gem2) => {
-  // Use toUpperCase() to ignore character casing
-
   const weight1 = gem1.weight;
   const weight2 = gem2.weight;
   let comparison = 0;
